@@ -403,6 +403,28 @@
   .note-box { border-left: 3px solid var(--gold); padding: 12px 16px; background: rgba(212,168,71,0.07); border-radius: 0 3px 3px 0; margin-top: 12px; font-size: 0.88rem; line-height: 1.6; }
   .note-box strong { font-weight: 600; color: #8a6a1a; }
 
+  /* SPICE LEVELS */
+  .spice-section { margin-top: 18px; }
+  .spice-header {
+    display: flex; align-items: center; gap: 8px;
+    font-family: 'DM Mono', monospace; font-size: 0.65rem;
+    text-transform: uppercase; letter-spacing: 0.1em;
+    color: #9a8a72; margin-bottom: 10px;
+    padding-bottom: 7px; border-bottom: 1px dashed var(--faint);
+  }
+  .spice-label-1 { color: #c0783a; }
+  .spice-label-2 { color: #b84a1a; }
+  .spice-label-3 { color: #8a1a0a; }
+  .spice-badge {
+    display: inline-block; font-size: 0.72rem;
+    padding: 1px 6px; border-radius: 3px;
+    font-family: 'DM Mono', monospace; font-weight: 600;
+    letter-spacing: 0.05em; margin-left: 4px;
+  }
+  .spice-badge-1 { background: rgba(192,120,58,0.12); color: #c0783a; }
+  .spice-badge-2 { background: rgba(184,74,26,0.12); color: #b84a1a; }
+  .spice-badge-3 { background: rgba(138,26,10,0.12); color: #8a1a0a; }
+
   /* TABLE OF CONTENTS */
   .toc-section {
     position: relative;
@@ -806,7 +828,7 @@
             <div class="vcard-id">5.32</div>
             <div class="vcard-title">Grunndæmi</div>
             <div class="vcard-desc">3p + 5p, 7s − 2s, 10a − 3a...</div>
-            <div class="vcard-footer"><span class="vcard-count">6 dæmi</span><span class="vcard-arrow">↗</span></div>
+            <div class="vcard-footer"><span class="vcard-count">13 dæmi</span><span class="vcard-arrow">↗</span></div>
           </div>
           <div class="vcard" onclick="openModal('b533')">
             <div class="vcard-id">5.33</div>
@@ -978,7 +1000,7 @@
             <div class="vcard-id">5.54</div>
             <div class="vcard-title">Grunndæmi</div>
             <div class="vcard-desc">3(a+1), (4+b)·2, (x−6)·9...</div>
-            <div class="vcard-footer"><span class="vcard-count">6 dæmi</span><span class="vcard-arrow">↗</span></div>
+            <div class="vcard-footer"><span class="vcard-count">11 dæmi</span><span class="vcard-arrow">↗</span></div>
           </div>
           <div class="vcard" onclick="openModal('b555')">
             <div class="vcard-id">5.55</div>
@@ -1040,37 +1062,37 @@
             <div class="vcard-id">1701</div>
             <div class="vcard-title">Einfaldar jöfnur</div>
             <div class="vcard-desc">Plús og mínus — einangra x báðum megin eða færa yfir</div>
-            <div class="vcard-footer"><span class="vcard-count">4 dæmi</span><span class="vcard-arrow">↗</span></div>
+            <div class="vcard-footer"><span class="vcard-count">10 dæmi</span><span class="vcard-arrow">↗</span></div>
           </div>
           <div class="vcard" onclick="openModal('m1702')">
             <div class="vcard-id">1702</div>
             <div class="vcard-title">Margföldun</div>
             <div class="vcard-desc">2x = 28, 3x = 261, 0,2x = 14...</div>
-            <div class="vcard-footer"><span class="vcard-count">4 dæmi</span><span class="vcard-arrow">↗</span></div>
+            <div class="vcard-footer"><span class="vcard-count">9 dæmi</span><span class="vcard-arrow">↗</span></div>
           </div>
           <div class="vcard" onclick="openModal('m1703')">
             <div class="vcard-id">1703</div>
             <div class="vcard-title">Tvö skref</div>
             <div class="vcard-desc">2x + 8 = 22, 0,1x + 2,3 = 14,8...</div>
-            <div class="vcard-footer"><span class="vcard-count">4 dæmi</span><span class="vcard-arrow">↗</span></div>
+            <div class="vcard-footer"><span class="vcard-count">10 dæmi</span><span class="vcard-arrow">↗</span></div>
           </div>
           <div class="vcard" onclick="openModal('m1704')">
             <div class="vcard-id">1704</div>
             <div class="vcard-title">Neikvæður stuðull</div>
             <div class="vcard-desc">4 − 2x = 12, 18 − 5x = 2353...</div>
-            <div class="vcard-footer"><span class="vcard-count">3 dæmi</span><span class="vcard-arrow">↗</span></div>
+            <div class="vcard-footer"><span class="vcard-count">8 dæmi</span><span class="vcard-arrow">↗</span></div>
           </div>
           <div class="vcard" onclick="openModal('m1705')">
             <div class="vcard-id">1705</div>
             <div class="vcard-title">Líkir liðir</div>
             <div class="vcard-desc">4x − 2x = 8, x + x + 20 + x + 30 = 500...</div>
-            <div class="vcard-footer"><span class="vcard-count">3 dæmi</span><span class="vcard-arrow">↗</span></div>
+            <div class="vcard-footer"><span class="vcard-count">9 dæmi</span><span class="vcard-arrow">↗</span></div>
           </div>
           <div class="vcard" onclick="openModal('m1706')">
             <div class="vcard-id">1706</div>
             <div class="vcard-title">Líkir liðir – neikvæðar</div>
             <div class="vcard-desc">2x − 4x = 10, 8x + 7 − 9x − 11 = 14,4...</div>
-            <div class="vcard-footer"><span class="vcard-count">3 dæmi</span><span class="vcard-arrow">↗</span></div>
+            <div class="vcard-footer"><span class="vcard-count">9 dæmi</span><span class="vcard-arrow">↗</span></div>
           </div>
         </div>
       </div>
@@ -1116,7 +1138,7 @@
             <div class="vcard-id">5.72</div>
             <div class="vcard-title">Leysa og prófa</div>
             <div class="vcard-desc">x+8=23, 3x+5=x+9, ½x−1=2−x...</div>
-            <div class="vcard-footer"><span class="vcard-count">9 dæmi</span><span class="vcard-arrow">↗</span></div>
+            <div class="vcard-footer"><span class="vcard-count">10 dæmi</span><span class="vcard-arrow">↗</span></div>
           </div>
           <div class="vcard" onclick="openModal('b581')">
             <div class="vcard-id">5.81</div>
@@ -1166,7 +1188,7 @@
             <div class="vcard-id">5.83</div>
             <div class="vcard-title">Aldursdæmi</div>
             <div class="vcard-desc">Bróðir og systir, Ásta/Birna/Sylvía, ræningjarnir...</div>
-            <div class="vcard-footer"><span class="vcard-count">4 dæmi</span><span class="vcard-arrow">↗</span></div>
+            <div class="vcard-footer"><span class="vcard-count">6 dæmi</span><span class="vcard-arrow">↗</span></div>
           </div>
           <div class="vcard" onclick="openModal('b584')">
             <div class="vcard-id">5.84</div>
@@ -1178,7 +1200,7 @@
             <div class="vcard-id">5.85</div>
             <div class="vcard-title">Tölur og sambönd</div>
             <div class="vcard-desc">Leggðu 7 við, deildu með 2, summa þriggja talna...</div>
-            <div class="vcard-footer"><span class="vcard-count">5 dæmi</span><span class="vcard-arrow">↗</span></div>
+            <div class="vcard-footer"><span class="vcard-count">9 dæmi</span><span class="vcard-arrow">↗</span></div>
           </div>
         </div>
       </div>
@@ -1232,7 +1254,7 @@
             <div class="vcard-id">Ó-3</div>
             <div class="vcard-title">Er talan lausn?</div>
             <div class="vcard-desc">Prófaðu hvort x = 3, x = 7, x = 4... uppfylla ójöfnuna</div>
-            <div class="vcard-footer"><span class="vcard-count">7 dæmi</span><span class="vcard-arrow">↗</span></div>
+            <div class="vcard-footer"><span class="vcard-count">9 dæmi</span><span class="vcard-arrow">↗</span></div>
           </div>
           <div class="vcard" onclick="openModal('oj04')">
             <div class="vcard-id">Ó-4</div>
@@ -1276,12 +1298,19 @@ const verkefni = {
     id: '5.32', title: 'Grunndæmi – líkir liðir',
     instruction: 'Einfaldaðu stæðurnar með því að draga saman <strong>líka liði</strong>.',
     problems: [
-      { label: 'a)', eq: '3p + 5p', ans: '8p' },
-      { label: 'b)', eq: '7s − 2s', ans: '5s' },
-      { label: 'c)', eq: '10a − 3a', ans: '7a' },
-      { label: 'd)', eq: '12b + 8b + 3b', ans: '23b' },
-      { label: 'e)', eq: '5u + 2u − u', ans: '6u' },
-      { label: 'f)', eq: '6v − 5v + 8v', ans: '9v' },
+      { label: 'a)', eq: '3p + 5p', ans: '8p', spice: 1 },
+      { label: 'b)', eq: '7s − 2s', ans: '5s', spice: 1 },
+      { label: 'c)', eq: '10a − 3a', ans: '7a', spice: 1 },
+      { label: 'd)', eq: '12b + 8b + 3b', ans: '23b', spice: 1 },
+      { label: 'e)', eq: '5u + 2u − u', ans: '6u', spice: 1 },
+      { label: 'f)', eq: '6v − 5v + 8v', ans: '9v', spice: 1 },
+      { label: 'g)', eq: '12k + 16k − 20k + 4k', ans: '12k', spice: 2 },
+      { label: 'h)', eq: '30m − 12m − 5m − 6m', ans: '7m', spice: 2 },
+      { label: 'i)', eq: '3n + 14n − 8n − 8n', ans: 'n', spice: 2 },
+      { label: 'j)', eq: '20p − 18p − 3p + p', ans: '0', spice: 2 },
+      { label: 'k)', eq: 'u + v + u + u + u − 3u', ans: 'u + v', spice: 3 },
+      { label: 'l)', eq: '3k + 4 + 2k − 5 − 4k − 2', ans: 'k − 3', spice: 3 },
+      { label: 'm)', eq: '3i − 4j − 2 − 5i − 2j + 15', ans: '−2i − 6j + 13', spice: 3 },
     ]
   },
   b533: {
@@ -1296,30 +1325,30 @@ const verkefni = {
   },
   b535: {
     id: '5.35', title: 'Líkir liðir + fastar',
-    instruction: 'Dragðu saman <strong>fastaliði</strong> og liði með sama bókstaf.',
+    instruction: 'Dragðu saman <strong>fastaliði</strong> og <strong>liði</strong> með sama bókstaf.',
     problems: [
-      { label: 'a)', eq: '5k + 2k', ans: '7k' },
-      { label: 'b)', eq: '6b − 4b', ans: '2b' },
-      { label: 'c)', eq: '3h + 4 − h', ans: '2h + 4' },
-      { label: 'd)', eq: '8 − 3a + 3', ans: '11 − 3a' },
-      { label: 'e)', eq: '5 + 2b − b', ans: '5 + b' },
-      { label: 'f)', eq: '2k − 5k', ans: '−3k' },
-      { label: 'g)', eq: 'p − 2 + 3p − 2', ans: '4p − 4' },
-      { label: 'h)', eq: '6s + 12 − 5s + 7', ans: 's + 19' },
-      { label: 'i)', eq: '6r − 5s − 5r + s', ans: 'r − 4s' },
-      { label: 'j)', eq: '15a − 10 + b + 5a', ans: '20a + b − 10' },
+      { label: 'a)', eq: '5k + 2k', ans: '7k', spice: 1 },
+      { label: 'b)', eq: '6b − 4b', ans: '2b', spice: 1 },
+      { label: 'c)', eq: '3h + 4 − h', ans: '2h + 4', spice: 1 },
+      { label: 'd)', eq: '8 − 3a + 3', ans: '11 − 3a', spice: 1 },
+      { label: 'e)', eq: '5 + 2b − b', ans: '5 + b', spice: 1 },
+      { label: 'f)', eq: '2k − 5k', ans: '−3k', spice: 2 },
+      { label: 'g)', eq: 'p − 2 + 3p − 2', ans: '4p − 4', spice: 2 },
+      { label: 'h)', eq: '6s + 12 − 5s + 7', ans: 's + 19', spice: 2 },
+      { label: 'i)', eq: '6r − 5s − 5r + s', ans: 'r − 4s', spice: 3 },
+      { label: 'j)', eq: '15a − 10 + b + 5a', ans: '20a + b − 10', spice: 3 },
     ]
   },
   b536: {
     id: '5.36', title: 'Tveir bókstafir',
-    instruction: 'Dragðu saman <strong>fastaliði</strong> og liði með sama bókstaf.',
+    instruction: 'Dragðu saman <strong>fastaliði</strong> og <strong>liði</strong> með sama bókstaf.',
     problems: [
-      { label: 'a)', eq: '3a + 2b + 2a + 10b', ans: '5a + 12b' },
-      { label: 'b)', eq: 'm − 2n + 3m + 5n', ans: '4m + 3n' },
-      { label: 'c)', eq: '10p + 4s + 5 − 10p + 4s', ans: '8s + 5' },
-      { label: 'd)', eq: '3i − 4j − 2 − 5i − 2j + 15', ans: '−2i − 6j + 13' },
-      { label: 'e)', eq: 'u + v + u + u + u − 3u', ans: 'u + v' },
-      { label: 'f)', eq: '3k + 4 + 2k − 5 − 4k − 2', ans: 'k − 3' },
+      { label: 'a)', eq: '3a + 2b + 2a + 10b', ans: '5a + 12b', spice: 1 },
+      { label: 'b)', eq: 'm − 2n + 3m + 5n', ans: '4m + 3n', spice: 1 },
+      { label: 'c)', eq: '10p + 4s + 5 − 10p + 4s', ans: '8s + 5', spice: 2 },
+      { label: 'd)', eq: '3i − 4j − 2 − 5i − 2j + 15', ans: '−2i − 6j + 13', spice: 2 },
+      { label: 'e)', eq: 'u + v + u + u + u − 3u', ans: 'u + v', spice: 3 },
+      { label: 'f)', eq: '3k + 4 + 2k − 5 − 4k − 2', ans: 'k − 3', spice: 3 },
     ]
   },
   b534: {
@@ -1337,27 +1366,27 @@ const verkefni = {
     id: '5.44', title: 'Gildisreikningar',
     instruction: 'Reiknaðu dæmin með því að nota gefin gildi.',
     problems: [
-      { label: 'a)', eq: 'x = 2. Hvað er 3 meira en x?', ans: '5' },
-      { label: 'b)', eq: 'm = 10. Hvað er helmingurinn af m?', ans: '5' },
-      { label: 'c)', eq: 'x = 5. Hvað er 2x + 1?', ans: '11' },
-      { label: 'd)', eq: 'a + 3 = 7. Hvað er 2a − 1?', ans: '7' },
-      { label: 'e)', eq: 'm + n = 15. Hvað er 2m + 2n?', ans: '30' },
-      { label: 'f)', eq: 'a = b + 2. Hvað er 2a − 4?', ans: '2b' },
+      { label: 'a)', eq: 'x = 2. Hvað er 3 meira en x?', ans: '5', spice: 1 },
+      { label: 'b)', eq: 'm = 10. Hvað er helmingurinn af m?', ans: '5', spice: 1 },
+      { label: 'c)', eq: 'x = 5. Hvað er 2x + 1?', ans: '11', spice: 1 },
+      { label: 'd)', eq: 'a + 3 = 7. Hvað er 2a − 1?', ans: '7', spice: 2 },
+      { label: 'e)', eq: 'm + n = 15. Hvað er 2m + 2n?', ans: '30', spice: 2 },
+      { label: 'f)', eq: 'a = b + 2. Hvað er 2a − 4?', ans: '2b', spice: 3 },
     ]
   },
   b545: {
     id: '5.45', title: 'Margföldun og deiling með bókstöfum',
     instruction: 'Reiknaðu dæmin og einfaldaðu eins og hægt er.',
     problems: [
-      { label: 'a)', eq: '3 · 6b', ans: '18b' },
-      { label: 'b)', eq: '5 · 2d', ans: '10d' },
-      { label: 'c)', eq: '4a · 5', ans: '20a' },
-      { label: 'd)', eq: '6k · 10', ans: '60k' },
-      { label: 'e)', eq: '10m : 2', ans: '5m' },
-      { label: 'f)', eq: '30n : 6', ans: '5n' },
-      { label: 'g)', eq: '5b · 9b', ans: '45b²' },
-      { label: 'h)', eq: '10a : 5', ans: '2a' },
-      { label: 'i)', eq: '6x²z³ : x', ans: '6xz³' },
+      { label: 'a)', eq: '3 · 6b', ans: '18b', spice: 1 },
+      { label: 'b)', eq: '5 · 2d', ans: '10d', spice: 1 },
+      { label: 'c)', eq: '4a · 5', ans: '20a', spice: 1 },
+      { label: 'd)', eq: '6k · 10', ans: '60k', spice: 1 },
+      { label: 'e)', eq: '10m : 2', ans: '5m', spice: 2 },
+      { label: 'f)', eq: '30n : 6', ans: '5n', spice: 2 },
+      { label: 'g)', eq: '5b · 9b', ans: '45b²', spice: 2 },
+      { label: 'h)', eq: '10a : 5', ans: '2a', spice: 2 },
+      { label: 'i)', eq: '6x²z³ : x', ans: '6xz³', spice: 3 },
     ]
   },
   b556: {
@@ -1389,15 +1418,20 @@ const verkefni = {
     ]
   },
   b554: {
-    id: '5.54', title: 'Stæður með sviga – grunndæmi',
-    instruction: 'Notaðu réttar reiknireglur til að margfalda. Skráðu eins einföld svör og hægt er.',
+    id: '5.54', title: 'Stæður með sviga',
+    instruction: 'Notaðu <strong>dreifireglu</strong> til að margfalda upp úr sviganum.',
     problems: [
-      { label: 'a)', eq: '3(a + 1)', ans: '3a + 3' },
-      { label: 'b)', eq: '(4 + b) · 2', ans: '8 + 2b' },
-      { label: 'c)', eq: '(x − 6) · 9', ans: '9x − 54' },
-      { label: 'd)', eq: 'm(10 − 3)', ans: '7m' },
-      { label: 'e)', eq: '(2 + 4x)y', ans: '2y + 4xy' },
-      { label: 'f)', eq: '(3s + 5t) · 7', ans: '21s + 35t' },
+      { label: 'a)', eq: '3(a + 1)', ans: '3a + 3', spice: 1 },
+      { label: 'b)', eq: '(4 + b) · 2', ans: '8 + 2b', spice: 1 },
+      { label: 'c)', eq: '(x − 6) · 9', ans: '9x − 54', spice: 1 },
+      { label: 'd)', eq: 'm(10 − 3)', ans: '7m', spice: 1 },
+      { label: 'e)', eq: '(2 + 4x)y', ans: '2y + 4xy', spice: 2 },
+      { label: 'f)', eq: '(3s + 5t) · 7', ans: '21s + 35t', spice: 2 },
+      { label: 'g)', eq: '−(a + b)', ans: '−a − b', spice: 2 },
+      { label: 'h)', eq: '−2(3x − 4)', ans: '−6x + 8', spice: 2 },
+      { label: 'i)', eq: '<span class="frac"><sup>1</sup>⁄<sub>3</sub></span>(6a − 9)', ans: '2a − 3', spice: 3 },
+      { label: 'j)', eq: '4(<span class="frac"><sup>3</sup>⁄<sub>4</sub></span> + <span class="frac"><sup>x</sup>⁄<sub>8</sub></span>)', ans: '3 + <span class="frac"><sup>x</sup>⁄<sub>2</sub></span>', spice: 3 },
+      { label: 'k)', eq: 'b(b² − ab)', ans: 'b³ − ab²', spice: 3 },
     ]
   },
   b555: {
@@ -1412,59 +1446,93 @@ const verkefni = {
   },
   m1701: {
     id: '1701', title: 'Einfaldar jöfnur – plús og mínus',
-    instruction: 'Leystu eftirfarandi <strong><strong>jöfnu</strong>r</strong> annað hvort með því að gera eins báðum megin eða með því að færa yfir og <strong>einangra</strong> þannig x-ið.',
+    instruction: 'Leystu <strong>jöfnurnar</strong> og <strong>einangra</strong> x.',
     problems: [
-      { label: 'a)', eq: 'x + 29 = 112', ans: 'x = 83' },
-      { label: 'b)', eq: 'x + 2,7 = 11,93', ans: 'x = 9,23' },
-      { label: 'c)', eq: 'x − 14 = 38', ans: 'x = 52' },
-      { label: 'd)', eq: 'x − 7,63 = 28,4', ans: 'x = 36,03' },
+      { label: 'a)', eq: 'x + 5 = 12', ans: 'x = 7', spice: 1 },
+      { label: 'b)', eq: 'x + 29 = 112', ans: 'x = 83', spice: 1 },
+      { label: 'c)', eq: 'x − 8 = 15', ans: 'x = 23', spice: 1 },
+      { label: 'd)', eq: 'x − 14 = 38', ans: 'x = 52', spice: 1 },
+      { label: 'e)', eq: 'x + 2,7 = 11,93', ans: 'x = 9,23', spice: 2 },
+      { label: 'f)', eq: 'x − 7,63 = 28,4', ans: 'x = 36,03', spice: 2 },
+      { label: 'g)', eq: 'x + 0,5 = 3,14', ans: 'x = 2,64', spice: 2 },
+      { label: 'h)', eq: 'x − 15,3 = 17,9', ans: 'x = 33,2', spice: 2 },
+      { label: 'i)', eq: 'x + (5,2 + 3,4) = 9,1', ans: 'x = 0,5', spice: 3 },
+      { label: 'j)', eq: 'x − (3,1 + 1,9) = 8', ans: 'x = 13', spice: 3 },
     ]
   },
   m1702: {
     id: '1702', title: 'Margföldun – prófaðu svarið',
-    instruction: 'Leystu <strong><strong><strong>jöfnu</strong>r</strong>nar</strong> og prófaðu svarið sem þú færð.',
+    instruction: 'Leystu <strong>jöfnurnar</strong> og prófaðu <strong>lausnina</strong>.',
     problems: [
-      { label: 'a)', eq: '2x = 28', ans: 'x = 14' },
-      { label: 'b)', eq: '3x = 261', ans: 'x = 87' },
-      { label: 'c)', eq: '4x = 12,8', ans: 'x = 3,2' },
-      { label: 'd)', eq: '0,2x = 14', ans: 'x = 70' },
+      { label: 'a)', eq: '2x = 16', ans: 'x = 8', spice: 1 },
+      { label: 'b)', eq: '3x = 27', ans: 'x = 9', spice: 1 },
+      { label: 'c)', eq: '5x = 45', ans: 'x = 9', spice: 1 },
+      { label: 'd)', eq: '2x = 28', ans: 'x = 14', spice: 1 },
+      { label: 'e)', eq: '3x = 261', ans: 'x = 87', spice: 2 },
+      { label: 'f)', eq: '4x = 12,8', ans: 'x = 3,2', spice: 2 },
+      { label: 'g)', eq: '0,2x = 14', ans: 'x = 70', spice: 2 },
+      { label: 'h)', eq: '2x = 150 − x', ans: 'x = 50', spice: 3 },
+      { label: 'i)', eq: '5x − 9 = 2x − 3', ans: 'x = 2', spice: 3 },
     ]
   },
   m1703: {
     id: '1703', title: 'Tvö skref',
-    instruction: 'Leystu <strong><strong><strong>jöfnu</strong>r</strong>nar</strong>.',
+    instruction: 'Leystu <strong>jöfnurnar</strong> í tveimur skrefum.',
     problems: [
-      { label: 'a)', eq: '2x + 8 = 22', ans: 'x = 7' },
-      { label: 'b)', eq: '2x − 15,6 = 28,2', ans: 'x = 21,9' },
-      { label: 'c)', eq: '3 + 3x = 114', ans: 'x = 37' },
-      { label: 'd)', eq: '0,1x + 2,3 = 14,8', ans: 'x = 125' },
+      { label: 'a)', eq: '2x + 3 = 11', ans: 'x = 4', spice: 1 },
+      { label: 'b)', eq: '3x − 6 = 9', ans: 'x = 5', spice: 1 },
+      { label: 'c)', eq: '2x + 8 = 22', ans: 'x = 7', spice: 1 },
+      { label: 'd)', eq: '4x − 5 = 19', ans: 'x = 6', spice: 1 },
+      { label: 'e)', eq: '3 + 3x = 114', ans: 'x = 37', spice: 2 },
+      { label: 'f)', eq: '2x − 15,6 = 28,2', ans: 'x = 21,9', spice: 2 },
+      { label: 'g)', eq: '0,1x + 2,3 = 14,8', ans: 'x = 125', spice: 2 },
+      { label: 'h)', eq: '7x + 4 = 22 − 2x', ans: 'x = 2', spice: 3 },
+      { label: 'i)', eq: '3x + 5 = x + 9', ans: 'x = 2', spice: 3 },
+      { label: 'j)', eq: '<span class="frac"><sup>1</sup>⁄<sub>2</sub></span>x − 1 = 2 − x', ans: 'x = 2', spice: 3 },
     ]
   },
   m1704: {
-    id: '1704', title: 'Neikvæður stuðull – prófaðu lausnirnar',
-    instruction: 'Leystu <strong><strong><strong>jöfnu</strong>r</strong>nar</strong> og prófaðu <strong><strong><strong>lausn</strong>ir</strong>nar</strong>.',
+    id: '1704', title: 'Neikvæður stuðull',
+    instruction: 'Leystu <strong>jöfnurnar</strong> og prófaðu <strong>lausnirnar</strong>.',
     problems: [
-      { label: 'a)', eq: '4 − 2x = 12', ans: 'x = −4' },
-      { label: 'b)', eq: '2,3 − 2x = 14,9', ans: 'x = −6,3' },
-      { label: 'c)', eq: '18 − 5x = 2353', ans: 'x = −467' },
+      { label: 'a)', eq: '5 − x = 3', ans: 'x = 2', spice: 1 },
+      { label: 'b)', eq: '10 − 2x = 4', ans: 'x = 3', spice: 1 },
+      { label: 'c)', eq: '4 − 2x = 12', ans: 'x = −4', spice: 2 },
+      { label: 'd)', eq: '2,3 − 2x = 14,9', ans: 'x = −6,3', spice: 2 },
+      { label: 'e)', eq: '3x + 12 = 6', ans: 'x = −2', spice: 2 },
+      { label: 'f)', eq: '18 − 5x = 2353', ans: 'x = −467', spice: 3 },
+      { label: 'g)', eq: '4m − 5 = 2m − 10', ans: 'm = −2,5', spice: 3 },
+      { label: 'h)', eq: 'x + 10 = 2', ans: 'x = −8', spice: 3 },
     ]
   },
   m1705: {
     id: '1705', title: 'Líkir liðir – draga saman fyrst',
-    instruction: 'Byrjaðu á því að draga saman <strong>líka liði</strong> til að einfalda <strong><strong><strong>jöfnu</strong>r</strong>nar</strong>, leystu þær svo.',
+    instruction: 'Dragðu saman <strong>líka liði</strong> og leystu svo <strong>jöfnuna</strong>.',
     problems: [
-      { label: 'a)', eq: '4x − 2x = 8', ans: 'x = 4' },
-      { label: 'b)', eq: '6x + 4x + 5 − 2 = 23', ans: 'x = 2' },
-      { label: 'c)', eq: 'x + x + 20 + x + 30 = 500', ans: 'x = 150', wide: true },
+      { label: 'a)', eq: '3x + 2x = 20', ans: 'x = 4', spice: 1 },
+      { label: 'b)', eq: '4x − 2x = 8', ans: 'x = 4', spice: 1 },
+      { label: 'c)', eq: '5x + x = 18', ans: 'x = 3', spice: 1 },
+      { label: 'd)', eq: '6x + 4x + 5 − 2 = 23', ans: 'x = 2', spice: 2 },
+      { label: 'e)', eq: '3x + 5 = x + 9', ans: 'x = 2', spice: 2 },
+      { label: 'f)', eq: '7x − 2x + 4 = 24', ans: 'x = 4', spice: 2 },
+      { label: 'g)', eq: 'x + x + 20 + x + 30 = 500', ans: 'x = 150', spice: 3, wide: true },
+      { label: 'h)', eq: '2x + 8 − 5x − 3 = 155', ans: 'x = −50', spice: 3 },
+      { label: 'i)', eq: '10x − 30 = 5x', ans: 'x = 6', spice: 3 },
     ]
   },
   m1706: {
     id: '1706', title: 'Líkir liðir – neikvæðar tölur',
-    instruction: 'Byrjaðu á því að draga saman <strong>líka liði</strong> til að einfalda <strong><strong><strong>jöfnu</strong>r</strong>nar</strong>, leystu þær svo.',
+    instruction: 'Dragðu saman <strong>líka liði</strong> og leystu svo <strong>jöfnuna</strong>.',
     problems: [
-      { label: 'a)', eq: '2x − 4x = 10', ans: 'x = −5' },
-      { label: 'b)', eq: '2x + 8 − 5x − 3 = 155', ans: 'x = −50' },
-      { label: 'c)', eq: '8x + 7 − 9x − 11 = 14,4', ans: 'x = −18,4' },
+      { label: 'a)', eq: 'x − 3x = 8', ans: 'x = −4', spice: 1 },
+      { label: 'b)', eq: '2x − 4x = 10', ans: 'x = −5', spice: 1 },
+      { label: 'c)', eq: '3x − 7x = 12', ans: 'x = −3', spice: 1 },
+      { label: 'd)', eq: '2x + 8 − 5x − 3 = 155', ans: 'x = −50', spice: 2 },
+      { label: 'e)', eq: '5x − 13 = 2x − 4', ans: 'x = 3', spice: 2 },
+      { label: 'f)', eq: '4x + 3 = 2x + 11', ans: 'x = 4', spice: 2 },
+      { label: 'g)', eq: '8x + 7 − 9x − 11 = 14,4', ans: 'x = −18,4', spice: 3 },
+      { label: 'h)', eq: '3x − 5 = 2x − 1', ans: 'x = 4', spice: 3 },
+      { label: 'i)', eq: '7x − 4 = 6x + 8', ans: 'x = 12', spice: 3 },
     ]
   },
   m1707: {
@@ -1479,17 +1547,18 @@ const verkefni = {
   // ── 2-2 PRÓFA LAUSNIR ──
   b572: {
     id: '5.72', title: 'Leysa og prófa',
-    instruction: 'Leystu <strong>jöfnurnar</strong> með útreikningi. Prófaðu síðan <strong>lausnina</strong> með því að setja hana inn í upphaflegu <strong>jöfnuna</strong>.',
+    instruction: 'Leystu <strong>jöfnurnar</strong> með útreikningi. Prófaðu síðan <strong>lausnina</strong>.',
     problems: [
-      { label: 'a)', eq: 'x + 8 = 23', ans: 'x = 15' },
-      { label: 'b)', eq: 'x − 10 = 42', ans: 'x = 52' },
-      { label: 'c)', eq: '2x = x + 5', ans: 'x = 5' },
-      { label: 'd)', eq: '3x + 5 = x + 9', ans: 'x = 2' },
-      { label: 'e)', eq: '2x = 150 − x', ans: 'x = 50' },
-      { label: 'f)', eq: '5x − 9 = 2x − 3', ans: 'x = 2' },
-      { label: 'g)', eq: '8x − 1 = 31', ans: 'x = 4' },
-      { label: 'h)', eq: '7x + 4 = 22 − 2x', ans: 'x = 2' },
-      { label: 'i)', eq: '<span class="frac"><sup>1</sup>⁄<sub>2</sub></span>x − 1 = 2 − x', ans: 'x = 2' },
+      { label: 'a)', eq: 'x + 8 = 23', ans: 'x = 15', spice: 1 },
+      { label: 'b)', eq: 'x − 10 = 42', ans: 'x = 52', spice: 1 },
+      { label: 'c)', eq: '8x − 1 = 31', ans: 'x = 4', spice: 1 },
+      { label: 'd)', eq: '2x = x + 5', ans: 'x = 5', spice: 2 },
+      { label: 'e)', eq: '3x + 5 = x + 9', ans: 'x = 2', spice: 2 },
+      { label: 'f)', eq: '2x = 150 − x', ans: 'x = 50', spice: 2 },
+      { label: 'g)', eq: '5x − 9 = 2x − 3', ans: 'x = 2', spice: 2 },
+      { label: 'h)', eq: '7x + 4 = 22 − 2x', ans: 'x = 2', spice: 3 },
+      { label: 'i)', eq: '<span class="frac"><sup>1</sup>⁄<sub>2</sub></span>x − 1 = 2 − x', ans: 'x = 2', spice: 3 },
+      { label: 'j)', eq: '3,5x − 2,8 = x + 2,2', ans: 'x = 2', spice: 3 },
     ],
   },
 
@@ -1508,10 +1577,12 @@ const verkefni = {
     id: '5.83', title: 'Aldursdæmi',
     instruction: 'Skráðu hvert dæmi sem <strong>jöfnu</strong> og leystu hana. Láttu x tákna <strong>óþekktu stærðina</strong>.',
     problems: [
-      { label: 'a)', eq: 'Bróðir Ídu er 3 árum eldri en hún. Saman eru þau 17 ára. Hve gömul er Ída?', ans: 'x + (x+3) = 17 → 2x = 14 → x = 7. Ída er 7 ára, bróðirinn er 10 ára.', wide: true },
-      { label: 'b)', eq: 'Ásta er 2 árum eldri en Birna. Birna er 2 árum eldri en Sylvía. Samtals eru þær 99 ára. Hve gömul er Birna?', ans: '(x+2) + x + (x−2) = 99 → 3x = 99 → x = 33. Birna er 33 ára, Ásta 35 ára, Sylvía 31 árs.', wide: true },
-      { label: 'c)', eq: 'Erpur er 2 árum yngri en Páll. Aldur Péturs er tvöfaldur aldur Páls. Samtals eru þeir 38 ára. Hvað er Erpur gamall?', ans: 'Látum Pál vera x. Þá er Erpur x−2 og Pétur 2x. (x−2) + x + 2x = 38 → 4x = 40 → x = 10. Erpur er 8 ára.', wide: true },
-      { label: 'd)', eq: 'Kasper er 4 árum eldri en Jesper. Jónatan er helmingi yngri en Kasper verður eftir 4 ár. Samtals eru þeir 73 ára. Hversu gamall er Jónatan?', ans: 'Jesper = x, Kasper = x+4, Jónatan = (x+8)/2. x + (x+4) + (x+8)/2 = 73 → x = 22. Jónatan er 15 ára.', wide: true },
+      { label: 'a)', eq: 'Bróðir Ídu er 3 árum eldri en hún. Saman eru þau 17 ára. Hve gömul er Ída?', ans: 'x + (x+3) = 17 → 2x = 14 → x = 7. Ída er 7 ára, bróðirinn er 10 ára.', spice: 1, wide: true },
+      { label: 'b)', eq: 'Pétur er 5 árum yngri en systir hans. Saman eru þau 27 ára. Hve gamall er Pétur?', ans: 'x + (x+5) = 27 → 2x = 22 → x = 11. Pétur er 11 ára.', spice: 1, wide: true },
+      { label: 'c)', eq: 'Ásta er 2 árum eldri en Birna. Birna er 2 árum eldri en Sylvía. Samtals eru þær 99 ára. Hve gömul er Birna?', ans: '(x+2) + x + (x−2) = 99 → 3x = 99 → x = 33. Birna er 33 ára.', spice: 2, wide: true },
+      { label: 'd)', eq: 'Erpur er 2 árum yngri en Páll. Aldur Péturs er tvöfaldur aldur Páls. Samtals eru þeir 38 ára. Hvað er Erpur gamall?', ans: 'Páll = x, Erpur = x−2, Pétur = 2x. (x−2) + x + 2x = 38 → x = 10. Erpur er 8 ára.', spice: 2, wide: true },
+      { label: 'e)', eq: 'Þrír vinir eru samtals 42 ára. Annar er tvisvar sinnum eldri en sá yngsti. Þriðji er 6 árum eldri en sá yngsti. Hve gamall er sá yngsti?', ans: 'x + 2x + (x+6) = 42 → 4x = 36 → x = 9. Sá yngsti er 9 ára.', spice: 3, wide: true },
+      { label: 'f)', eq: 'Kasper er 4 árum eldri en Jesper. Jónatan er helmingi yngri en Kasper verður eftir 4 ár. Samtals eru þeir 73 ára. Hversu gamall er Jónatan?', ans: 'Jesper = x, Kasper = x+4, Jónatan = (x+8)/2. x + (x+4) + (x+8)/2 = 73 → x = 22. Jónatan er 15 ára.', spice: 3, wide: true },
     ],
   },
 
@@ -1528,11 +1599,15 @@ const verkefni = {
     id: '5.85', title: 'Tölur og sambönd',
     instruction: 'Skráðu hvert dæmi sem <strong>jöfnu</strong> og leystu hana. Láttu x tákna <strong>óþekktu stærðina</strong>.',
     problems: [
-      { label: 'a)', eq: 'Þegar þú leggur 7 við ákveðna tölu verður svarið 12. Hver er talan?', ans: 'x + 7 = 12 → x = 5' },
-      { label: 'b)', eq: 'Þegar þú bætir 3 við tölu og deilir summuna með 2 verður svarið 7. Hver er talan?', ans: '(x + 3) : 2 = 7 → x + 3 = 14 → x = 11' },
-      { label: 'c)', eq: 'Tala er 3 stærri en önnur tala. Summa þessara tveggja talna er 45. Hver er minni talan?', ans: 'x + (x+3) = 45 → 2x = 42 → x = 21. Minni talan er 21.' },
-      { label: 'd)', eq: 'Summa þriggja heilla talna sem koma hver á eftir annarri er 42. Hver er minnsta talan?', ans: 'x + (x+1) + (x+2) = 42 → 3x + 3 = 42 → x = 13. Minnsta talan er 13.' },
-      { label: 'e)', eq: 'Ef tala er margfölduð með 5 verður hún 34 stærri en þreföld upphaflega talan. Hver er talan?', ans: '5x = 3x + 34 → 2x = 34 → x = 17' },
+      { label: 'a)', eq: 'Þegar þú leggur 7 við ákveðna tölu verður svarið 12. Hver er talan?', ans: 'x + 7 = 12 → x = 5', spice: 1 },
+      { label: 'b)', eq: 'Þegar þú dregur 4 frá tölu verður svarið 9. Hver er talan?', ans: 'x − 4 = 9 → x = 13', spice: 1 },
+      { label: 'c)', eq: 'Tvöföld tala er 18. Hver er talan?', ans: '2x = 18 → x = 9', spice: 1 },
+      { label: 'd)', eq: 'Þegar þú bætir 3 við tölu og deilir summuna með 2 verður svarið 7. Hver er talan?', ans: '(x + 3) : 2 = 7 → x = 11', spice: 2 },
+      { label: 'e)', eq: 'Tala er 3 stærri en önnur tala. Summa þessara tveggja talna er 45. Hver er minni talan?', ans: 'x + (x+3) = 45 → x = 21', spice: 2 },
+      { label: 'f)', eq: 'Summa þriggja heilla talna sem koma hver á eftir annarri er 42. Hver er minnsta talan?', ans: 'x + (x+1) + (x+2) = 42 → x = 13', spice: 2 },
+      { label: 'g)', eq: 'Ef tala er margfölduð með 5 verður hún 34 stærri en þreföld upphaflega talan. Hver er talan?', ans: '5x = 3x + 34 → x = 17', spice: 3 },
+      { label: 'h)', eq: 'Summa tveggja talna er 80. Önnur talan er fjórum sinnum stærri en hin. Hver er minni talan?', ans: 'x + 4x = 80 → x = 16', spice: 3 },
+      { label: 'i)', eq: '9 stærra en ferningstala tölu er jafnt og sexföld talan. Hver er talan?', ans: 'x² + 9 = 6x → x² − 6x + 9 = 0 → (x−3)² = 0 → x = 3', spice: 3 },
     ],
   },
 
@@ -1569,13 +1644,15 @@ const verkefni = {
     id: 'Ó-3', title: 'Er talan lausn?',
     instruction: 'Prófaðu hvort gefna talan uppfyllir <strong>ójöfnuna</strong>. Svaraðu já eða nei.',
     problems: [
-      { label: 'a) x < 5,  x = 3', eq: 'Er 3 &lt; 5?', ans: 'Já ✓ (3 er minna en 5)' },
-      { label: 'b) x < 5,  x = 7', eq: 'Er 7 &lt; 5?', ans: 'Nei ✗ (7 er stærra en 5)' },
-      { label: 'c) x ≥ 4,  x = 4', eq: 'Er 4 ≥ 4?', ans: 'Já ✓ (4 er jafnt og 4)' },
-      { label: 'd) 2x > 10,  x = 6', eq: 'Er 2 · 6 &gt; 10?', ans: 'Já ✓ (12 &gt; 10)' },
-      { label: 'e) 2x > 10,  x = 5', eq: 'Er 2 · 5 &gt; 10?', ans: 'Nei ✗ (10 = 10, ekki stærra)' },
-      { label: 'f) x + 3 ≤ 8,  x = 5', eq: 'Er 5 + 3 ≤ 8?', ans: 'Já ✓ (8 ≤ 8)' },
-      { label: 'g) x + 3 ≤ 8,  x = 6', eq: 'Er 6 + 3 ≤ 8?', ans: 'Nei ✗ (9 &gt; 8)' },
+      { label: 'a) x < 5,  x = 3', eq: 'Er 3 &lt; 5?', ans: 'Já ✓ (3 er minna en 5)', spice: 1 },
+      { label: 'b) x < 5,  x = 7', eq: 'Er 7 &lt; 5?', ans: 'Nei ✗ (7 er stærra en 5)', spice: 1 },
+      { label: 'c) x ≥ 4,  x = 4', eq: 'Er 4 ≥ 4?', ans: 'Já ✓ (4 er jafnt og 4)', spice: 1 },
+      { label: 'd) 2x > 10,  x = 6', eq: 'Er 2 · 6 &gt; 10?', ans: 'Já ✓ (12 &gt; 10)', spice: 2 },
+      { label: 'e) 2x > 10,  x = 5', eq: 'Er 2 · 5 &gt; 10?', ans: 'Nei ✗ (10 = 10, ekki stærra)', spice: 2 },
+      { label: 'f) x + 3 ≤ 8,  x = 5', eq: 'Er 5 + 3 ≤ 8?', ans: 'Já ✓ (8 ≤ 8)', spice: 2 },
+      { label: 'g) x + 3 ≤ 8,  x = 6', eq: 'Er 6 + 3 ≤ 8?', ans: 'Nei ✗ (9 &gt; 8)', spice: 2 },
+      { label: 'h) 3x − 1 < 11,  x = 4', eq: 'Er 3·4 − 1 &lt; 11?', ans: 'Nei ✗ (11 = 11, ekki minna)', spice: 3 },
+      { label: 'i) −x > −3,  x = 2', eq: 'Er −2 &gt; −3?', ans: 'Já ✓ (−2 er stærra en −3)', spice: 3 },
     ],
   },
 
@@ -1595,17 +1672,56 @@ function openModal(id) {
   const v = verkefni[id];
   document.getElementById('modal-id').textContent = v.id;
   document.getElementById('modal-title').textContent = v.title;
-  let html = `<p class="modal-instruction">${v.instruction}</p><div class="problems-grid">`;
-  v.problems.forEach(p => {
-    const cls = p.wide ? 'problem-wide' : 'problem';
-    html += `<div class="${cls}" onclick="toggleAnswer(this)">
-      <div class="problem-label">${p.label}</div>
-      <div class="problem-eq">${p.eq}</div>
-      <div class="problem-answer"><div class="answer-label">Svar</div><div class="answer-val">${p.ans}</div></div>
-      <button class="show-btn">Sýna svar ▾</button>
-    </div>`;
-  });
-  html += '</div>';
+
+  let html = `<p class="modal-instruction">${v.instruction}</p>`;
+
+  // Check if problems have spice levels
+  const hasSpice = v.problems && v.problems.some(p => p.spice);
+
+  if (hasSpice) {
+    const levels = [
+      { key: 1, emoji: '🌶️', label: 'Milt', sub: '', cls: 'spice-label-1', badge: 'spice-badge-1' },
+      { key: 2, emoji: '🌶️🌶️', label: 'Kryddað', sub: '', cls: 'spice-label-2', badge: 'spice-badge-2' },
+      { key: 3, emoji: '🌶️🌶️🌶️', label: 'Sterkt', sub: '', cls: 'spice-label-3', badge: 'spice-badge-3' },
+    ];
+    levels.forEach(lvl => {
+      const group = v.problems.filter(p => p.spice === lvl.key);
+      if (!group.length) return;
+      // Shuffle within each level
+      const shuffled = [...group].sort(() => Math.random() - 0.5);
+      html += `<div class="spice-section">
+        <div class="spice-header">
+          <span class="${lvl.cls}">${lvl.emoji} ${lvl.label}</span>
+          ${lvl.sub ? `<span class="spice-badge ${lvl.badge}">${lvl.sub}</span>` : ''}
+        </div>
+        <div class="problems-grid">`;
+      shuffled.forEach(p => {
+        const cls = p.wide ? 'problem-wide' : 'problem';
+        html += `<div class="${cls}" onclick="toggleAnswer(this)">
+          <div class="problem-label">${p.label}</div>
+          <div class="problem-eq">${p.eq}</div>
+          <div class="problem-answer"><div class="answer-label">Svar</div><div class="answer-val">${p.ans}</div></div>
+          <button class="show-btn">Sýna svar ▾</button>
+        </div>`;
+      });
+      html += `</div></div>`;
+    });
+  } else {
+    // No spice — shuffle and render as before
+    const shuffled = v.problems ? [...v.problems].sort(() => Math.random() - 0.5) : [];
+    html += `<div class="problems-grid">`;
+    shuffled.forEach(p => {
+      const cls = p.wide ? 'problem-wide' : 'problem';
+      html += `<div class="${cls}" onclick="toggleAnswer(this)">
+        <div class="problem-label">${p.label}</div>
+        <div class="problem-eq">${p.eq}</div>
+        <div class="problem-answer"><div class="answer-label">Svar</div><div class="answer-val">${p.ans}</div></div>
+        <button class="show-btn">Sýna svar ▾</button>
+      </div>`;
+    });
+    html += `</div>`;
+  }
+
   if (v.note) html += `<div class="note-box">${v.note}</div>`;
   document.getElementById('modal-body').innerHTML = html;
   document.getElementById('overlay').classList.add('open');
