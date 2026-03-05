@@ -1,0 +1,1733 @@
+<!DOCTYPE html>
+<html lang="is">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stærðfræði – 8. Bekkur</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,600;0,900;1,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1208;
+    --paper: #f5f0e8;
+    --accent: #c84b2f;
+    --gold: #d4a847;
+    --faint: #e8e1d3;
+    --green: #2d6e4e;
+    --blue: #2a4d7a;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Fraunces', serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(26,18,8,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(26,18,8,0.04) 1px, transparent 1px);
+    background-size: 32px 32px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .container {
+    max-width: 940px;
+    margin: 0 auto;
+    padding: 0 24px;
+    width: 100%;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* NAV */
+  nav {
+    position: relative;
+    z-index: 1;
+    border-bottom: 1.5px solid var(--ink);
+    padding: 18px 0;
+  }
+  nav .container { display: flex; align-items: center; justify-content: space-between; }
+  .nav-logo {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.78rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: var(--ink);
+    text-decoration: none;
+  }
+  .nav-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem;
+    color: #9a8a72;
+    letter-spacing: 0.08em;
+  }
+
+  /* HERO */
+  .hero {
+    position: relative;
+    z-index: 1;
+    padding: 56px 0 44px;
+    border-bottom: 1.5px solid var(--ink);
+  }
+  .hero-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--accent);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  .hero h1 {
+    font-size: clamp(2.8rem, 8vw, 5.5rem);
+    font-weight: 900;
+    line-height: 0.92;
+    letter-spacing: -0.04em;
+    margin-bottom: 18px;
+  }
+  .hero h1 em {
+    font-style: italic;
+    font-weight: 300;
+    color: #7a6a52;
+  }
+  .hero-sub {
+    font-size: 0.98rem;
+    font-weight: 300;
+    font-style: italic;
+    color: #5a4e3a;
+    line-height: 1.65;
+  }
+
+  /* MAIN CONTENT */
+  .main { position: relative; z-index: 1; padding: 48px 0 80px; }
+
+  /* LOTA BANNER */
+  .lota-banner {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    background: var(--ink);
+    color: var(--paper);
+    border-radius: 4px;
+    padding: 24px 32px;
+    margin-bottom: 44px;
+    box-shadow: 4px 4px 0 var(--accent);
+  }
+  .lota-banner-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    opacity: 0.45;
+  }
+  .lota-banner-num {
+    font-size: 3.8rem;
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: -0.04em;
+    color: var(--accent);
+  }
+  .lota-banner-sub {
+    font-size: 1.3rem;
+    font-weight: 300;
+    font-style: italic;
+    opacity: 0.7;
+    border-left: 1.5px solid rgba(245,240,232,0.2);
+    padding-left: 20px;
+  }
+
+  /* SECTION (Þáttur) */
+  .section {
+    margin-bottom: 48px;
+  }
+
+  .section-head {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 6px;
+  }
+  .section-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem;
+    padding: 3px 10px;
+    border-radius: 2px;
+    letter-spacing: 0.07em;
+    font-weight: 500;
+    flex-shrink: 0;
+  }
+  .section-tag.bokst { background: var(--blue); color: white; }
+  .section-tag.jofn { background: var(--accent); color: white; }
+
+  .section-title {
+    font-size: 1.45rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+  }
+  .section-desc {
+    font-size: 0.85rem;
+    font-style: italic;
+    font-weight: 300;
+    color: #7a6a52;
+    margin-bottom: 20px;
+    padding-left: 2px;
+  }
+
+  /* SUBCATEGORY */
+  .subcat {
+    margin-bottom: 28px;
+  }
+
+  .subcat-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+  .subcat-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    color: #9a8a72;
+    letter-spacing: 0.08em;
+    border: 1px solid var(--faint);
+    padding: 2px 8px;
+    border-radius: 2px;
+  }
+  .subcat-name {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--ink);
+  }
+  .subcat-line {
+    flex: 1;
+    height: 1px;
+    background: var(--faint);
+  }
+
+  /* CARDS */
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(185px, 1fr));
+    gap: 12px;
+  }
+
+  .vcard {
+    background: white;
+    border: 1.5px solid var(--faint);
+    border-radius: 4px;
+    padding: 18px 18px 14px;
+    cursor: pointer;
+    transition: transform 0.15s, box-shadow 0.15s, border-color 0.15s;
+    box-shadow: 2px 2px 0 var(--faint);
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    user-select: none;
+  }
+  .vcard:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 4px 4px 0 var(--ink);
+    border-color: var(--ink);
+  }
+  .vcard-id {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem;
+    color: #9a8a72;
+    letter-spacing: 0.06em;
+  }
+  .vcard-title {
+    font-size: 0.98rem;
+    font-weight: 600;
+    line-height: 1.25;
+    color: var(--ink);
+  }
+  .vcard-desc {
+    font-size: 0.78rem;
+    font-style: italic;
+    font-weight: 300;
+    color: #7a6a52;
+    line-height: 1.45;
+    flex: 1;
+  }
+  .vcard-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 10px;
+    padding-top: 8px;
+    border-top: 1px solid var(--faint);
+  }
+  .vcard-count {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    color: #9a8a72;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .vcard-arrow { font-size: 0.9rem; color: var(--accent); transition: transform 0.15s; }
+  .vcard:hover .vcard-arrow { transform: translate(2px, -2px); }
+
+  .vcard-soon {
+    opacity: 0.45;
+    cursor: default;
+    pointer-events: none;
+  }
+  .soon-badge {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.58rem;
+    background: var(--gold);
+    color: var(--ink);
+    padding: 2px 7px;
+    border-radius: 2px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  /* DIVIDER */
+  .section-divider {
+    border: none;
+    border-top: 1.5px dashed var(--faint);
+    margin: 44px 0;
+  }
+
+  /* FOOTER */
+  footer {
+    position: relative;
+    z-index: 1;
+    border-top: 1.5px solid var(--faint);
+    padding: 20px 0;
+    margin-top: auto;
+  }
+  footer .container { display: flex; justify-content: space-between; align-items: center; }
+  .footer-text {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    color: #9a8a72;
+    letter-spacing: 0.05em;
+  }
+
+  /* MODAL */
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(26,18,8,0.55);
+    backdrop-filter: blur(3px);
+    z-index: 200;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s;
+  }
+  .modal-overlay.open { opacity: 1; pointer-events: all; }
+  .modal {
+    background: var(--paper);
+    border: 1.5px solid var(--ink);
+    border-radius: 6px;
+    box-shadow: 6px 6px 0 var(--ink);
+    width: 100%;
+    max-width: 680px;
+    max-height: 88vh;
+    overflow-y: auto;
+    transform: translateY(16px);
+    transition: transform 0.2s;
+  }
+  .modal-overlay.open .modal { transform: translateY(0); }
+  .modal-head {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 16px 22px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+  .modal-head-left { display: flex; align-items: baseline; gap: 10px; }
+  .modal-id { font-family: 'DM Mono', monospace; font-size: 0.75rem; opacity: 0.5; }
+  .modal-title { font-size: 1.05rem; font-weight: 600; }
+  .modal-close {
+    background: none; border: none; color: var(--paper);
+    font-size: 1.2rem; cursor: pointer; opacity: 0.6;
+    transition: opacity 0.15s; padding: 2px 6px;
+  }
+  .modal-close:hover { opacity: 1; }
+  .modal-body { padding: 22px; }
+  .modal-instruction {
+    font-size: 0.92rem; font-weight: 300; font-style: italic;
+    color: #5a4e3a; line-height: 1.65; margin-bottom: 20px;
+    padding-bottom: 16px; border-bottom: 1px dashed var(--faint);
+  }
+  .modal-instruction strong {
+    font-weight: 700; font-style: italic; color: var(--ink);
+  }
+  .explainer-body strong {
+    font-weight: 700; font-style: italic; color: var(--ink);
+  }
+  .problems-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+    gap: 10px;
+  }
+  .problem, .problem-wide {
+    background: white; border: 1.5px solid var(--faint);
+    border-radius: 3px; padding: 12px 14px; cursor: pointer;
+    transition: border-color 0.15s;
+  }
+  .problem:hover, .problem-wide:hover { border-color: var(--accent); }
+  .problem-wide { grid-column: 1 / -1; }
+  .problem-label {
+    font-family: 'DM Mono', monospace; font-size: 0.63rem;
+    color: var(--accent); font-weight: 500; margin-bottom: 5px;
+  }
+  .problem-eq { font-family: 'DM Mono', monospace; font-size: 0.92rem; font-weight: 500; }
+  .problem-answer { display: none; margin-top: 9px; padding-top: 9px; border-top: 1px dashed var(--faint); }
+  .problem-answer.visible { display: block; }
+  .answer-label { font-family: 'DM Mono', monospace; font-size: 0.6rem; color: var(--green); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 2px; }
+  .answer-val { font-family: 'DM Mono', monospace; font-size: 0.95rem; font-weight: 500; color: var(--green); }
+  .show-btn { display: inline-block; margin-top: 7px; font-family: 'DM Mono', monospace; font-size: 0.63rem; color: #9a8a72; cursor: pointer; text-decoration: underline; text-underline-offset: 3px; background: none; border: none; }
+  .show-btn:hover { color: var(--accent); }
+  .note-box { border-left: 3px solid var(--gold); padding: 12px 16px; background: rgba(212,168,71,0.07); border-radius: 0 3px 3px 0; margin-top: 12px; font-size: 0.88rem; line-height: 1.6; }
+  .note-box strong { font-weight: 600; color: #8a6a1a; }
+
+  /* TABLE OF CONTENTS */
+  .toc-section {
+    position: relative;
+    z-index: 1;
+    border-bottom: 1.5px solid var(--ink);
+    padding: 36px 0 40px;
+    background: white;
+  }
+  .toc-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem;
+    color: #9a8a72;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 20px;
+  }
+  .toc-lotur {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .toc-lota {
+    border: 1.5px solid var(--faint);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .toc-lota-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 20px;
+    background: var(--ink);
+    color: var(--paper);
+    cursor: pointer;
+    transition: background 0.15s;
+    user-select: none;
+  }
+  .toc-lota-head:hover { background: #2e2518; }
+  .toc-lota-left { display: flex; align-items: center; gap: 14px; }
+  .toc-lota-num {
+    font-size: 1.6rem;
+    font-weight: 900;
+    line-height: 1;
+    color: var(--accent);
+    letter-spacing: -0.04em;
+  }
+  .toc-lota-name {
+    font-size: 1.0rem;
+    font-weight: 600;
+    font-style: italic;
+    opacity: 0.85;
+  }
+  .toc-arrow {
+    font-size: 1.1rem;
+    opacity: 0.5;
+    transition: transform 0.2s;
+  }
+  .toc-units {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border-top: 1.5px solid var(--faint);
+  }
+  .toc-unit {
+    padding: 16px 20px;
+    cursor: pointer;
+    transition: background 0.15s;
+    border-right: 1.5px solid var(--faint);
+  }
+  .toc-unit:last-child { border-right: none; }
+  .toc-unit:hover { background: var(--paper); }
+  .toc-unit-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.62rem;
+    padding: 2px 8px;
+    border-radius: 2px;
+    letter-spacing: 0.06em;
+    font-weight: 500;
+    display: inline-block;
+    margin-bottom: 6px;
+  }
+  .toc-unit-tag.blue { background: var(--blue); color: white; }
+  .toc-unit-tag.red { background: var(--accent); color: white; }
+  .toc-unit-name {
+    display: block;
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: var(--ink);
+  }
+  .toc-subs {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .toc-subs span {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem;
+    color: #7a6a52;
+    padding: 3px 8px;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: background 0.12s, color 0.12s;
+    display: inline-block;
+    letter-spacing: 0.03em;
+  }
+  .toc-subs span:hover {
+    background: var(--faint);
+    color: var(--ink);
+  }
+
+  /* EXPLAINER ACCORDION */
+  .explainer {
+    margin-bottom: 16px;
+  }
+  .explainer-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: none;
+    border: 1.5px dashed var(--faint);
+    border-radius: 3px;
+    padding: 8px 14px;
+    cursor: pointer;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem;
+    color: #9a8a72;
+    letter-spacing: 0.06em;
+    transition: border-color 0.15s, color 0.15s;
+    width: 100%;
+    text-align: left;
+  }
+  .explainer-btn:hover { border-color: var(--blue); color: var(--blue); }
+  .explainer-btn.open { border-style: solid; border-color: var(--blue); color: var(--blue); background: rgba(42,77,122,0.04); border-bottom: none; border-radius: 3px 3px 0 0; }
+  .explainer-icon { font-size: 0.75rem; transition: transform 0.2s; }
+  .explainer-btn.open .explainer-icon { transform: rotate(90deg); }
+  .explainer-body {
+    display: none;
+    border: 1.5px solid var(--blue);
+    border-top: none;
+    border-radius: 0 0 3px 3px;
+    background: rgba(42,77,122,0.03);
+    padding: 16px 18px;
+    font-size: 0.88rem;
+    line-height: 1.75;
+    color: #3a3020;
+    margin-bottom: 16px;
+  }
+  .explainer-body.open { display: block; }
+  .explainer-body h4 {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    font-weight: 700;
+    margin: 14px 0 5px;
+    color: var(--blue);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+  .explainer-body h4:first-child { margin-top: 0; }
+  .explainer-body .ex-eq {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.88rem;
+    background: white;
+    border: 1.5px solid var(--faint);
+    border-radius: 2px;
+    padding: 6px 12px;
+    margin: 5px 0 8px;
+    display: block;
+    color: var(--ink);
+  }
+  .explainer-body p { margin-bottom: 6px; font-weight: 300; }
+  .explainer-body strong { font-weight: 600; color: var(--ink); }
+
+
+    .toc-unit { border-right: none; border-bottom: 1.5px solid var(--faint); }
+    .toc-unit:last-child { border-bottom: none; }
+  }
+
+  @media (max-width: 600px) {
+    .cards-grid { grid-template-columns: 1fr 1fr; }
+    .lota-banner { flex-wrap: wrap; gap: 10px; }
+    .lota-banner-sub { border-left: none; padding-left: 0; }
+  }
+
+  /* INLINE FRACTIONS */
+  .frac {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    vertical-align: middle;
+    font-size: 0.78em;
+    line-height: 1.1;
+    margin: 0 2px;
+  }
+  .frac sup, .frac sub {
+    font-size: 1em;
+    line-height: 1;
+    display: block;
+    text-align: center;
+    padding: 0 1px;
+  }
+  .frac sup { border-bottom: 1px solid currentColor; }
+
+
+  .glossary-section { margin-bottom: 16px; }
+  .glossary-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.63rem;
+    color: #9a8a72;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    display: block;
+  }
+  .glossary {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+  }
+  .gchip {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    padding: 5px 13px;
+    border-radius: 20px;
+    border: 1.5px solid var(--faint);
+    background: white;
+    cursor: pointer;
+    transition: border-color 0.15s, background 0.15s;
+    color: var(--ink);
+    user-select: none;
+  }
+  .gchip:hover, .gchip.active {
+    border-color: var(--gold);
+    background: rgba(212,168,71,0.1);
+    color: #6a4a00;
+  }
+  .gpopup {
+    display: none;
+    background: white;
+    border: 1.5px solid var(--gold);
+    border-radius: 4px;
+    padding: 14px 16px;
+    margin-top: 10px;
+    margin-bottom: 4px;
+    box-shadow: 3px 3px 0 rgba(212,168,71,0.25);
+    animation: fadeIn 0.15s ease;
+  }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: translateY(0); } }
+  .gpopup.visible { display: block; }
+  .gpopup-word {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: #8a6200;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .gpopup-def {
+    font-size: 0.88rem;
+    font-weight: 300;
+    line-height: 1.65;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+  .gpopup-def strong { font-weight: 600; }
+  .gpopup-ex {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.82rem;
+    background: var(--paper);
+    border-radius: 2px;
+    padding: 5px 10px;
+    margin-top: 8px;
+    display: inline-block;
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="container">
+    <a href="forsida.html" class="nav-logo">Stærðfræði – 8. Bekkur</a>
+    <span class="nav-tag">Álftamýrarskóli</span>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="container">
+    <div class="hero-eyebrow">Álftamýrarskóli · 8. Bekkur</div>
+    <h1>Stærðfræði<br><em>Vefur 8. Bekkjar</em></h1>
+    <p class="hero-sub">Velkomin á verkefnasíðu Álftamýrarskóla í stærðfræði — smelltu á verkefni til að byrja.</p>
+  </div>
+</section>
+
+<!-- TABLE OF CONTENTS -->
+<section class="toc-section">
+  <div class="container">
+    <div class="toc-header">
+      <span class="toc-eyebrow">Efnisyfirlit</span>
+    </div>
+    <div class="toc-lotur">
+
+      <!-- LOTA 6 -->
+      <div class="toc-lota">
+        <div class="toc-lota-head" onclick="scrollToSection('lota6')">
+          <div class="toc-lota-left">
+            <span class="toc-lota-num">6</span>
+            <span class="toc-lota-name">Bókstafir og Jöfnur</span>
+          </div>
+          <span class="toc-arrow">↓</span>
+        </div>
+        <div class="toc-units">
+          <div class="toc-unit" onclick="scrollToSection('þattur1')">
+            <span class="toc-unit-tag blue">Þáttur 1</span>
+            <span class="toc-unit-name">Bókstafareikningur</span>
+            <div class="toc-subs">
+              <span onclick="scrollToSection('sub1-1');event.stopPropagation()">1-1 Líkir liðir</span>
+              <span onclick="scrollToSection('sub1-2');event.stopPropagation()">1-2 Gildi stæðna</span>
+              <span onclick="scrollToSection('sub1-3');event.stopPropagation()">1-3 Stæður úr raunveruleikanum</span>
+              <span onclick="scrollToSection('sub1-4');event.stopPropagation()">1-4 Stæður með sviga</span>
+            </div>
+          </div>
+          <div class="toc-unit" onclick="scrollToSection('þattur2')">
+            <span class="toc-unit-tag red">Þáttur 2</span>
+            <span class="toc-unit-name">Jöfnur</span>
+            <div class="toc-subs">
+              <span onclick="scrollToSection('sub2-1');event.stopPropagation()">2-1 Einangra x</span>
+              <span onclick="scrollToSection('sub2-2');event.stopPropagation()">2-2 Prófa lausnir</span>
+              <span onclick="scrollToSection('sub2-3');event.stopPropagation()">2-3 Orðadæmi</span>
+              <span onclick="scrollToSection('sub2-4');event.stopPropagation()">2-4 Ójöfnur</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="main">
+  <div class="container">
+
+    <!-- LOTA BANNER -->
+    <div class="lota-banner" id="lota6">
+      <span class="lota-banner-label">Lota</span>
+      <span class="lota-banner-num">6</span>
+      <span class="lota-banner-sub">Bókstafir og Jöfnur</span>
+    </div>
+
+    <!-- ══ ÞÁTTUR 1: BÓKSTAFAREIKNINGUR ══ -->
+    <div class="section" id="þattur1">
+      <div class="section-head">
+        <span class="section-tag bokst">Þáttur 1</span>
+        <span class="section-title">Bókstafareikningur</span>
+      </div>
+      <p class="section-desc">Reikningur með bókstöfum, einföldun stæðna og stæður með sviga</p>
+
+      <!-- 1-1 Líkir liðir -->
+      <div class="subcat" id="sub1-1">
+        <div class="subcat-label">
+          <span class="subcat-num">1-1</span>
+          <span class="subcat-name">Líkir liðir</span>
+          <span class="subcat-line"></span>
+        </div>
+        <div class="explainer">
+          <button class="explainer-btn" onclick="toggleExplainer(this)">
+            <span class="explainer-icon">▶</span> Útskýring – hvað eru líkir liðir?
+          </button>
+          <div class="explainer-body">
+            <div class="glossary-section">
+              <span class="glossary-label">Hugtök — smelltu á orð til að lesa skilgreiningu</span>
+              <div class="glossary" id="g11">
+                <span class="gchip" onclick="showGloss('g11','liður')"><strong>liður</strong></span>
+                <span class="gchip" onclick="showGloss('g11','fastaliður')"><strong>fastaliður</strong></span>
+                <span class="gchip" onclick="showGloss('g11','breytuliður')"><strong>breytuliður</strong></span>
+                <span class="gchip" onclick="showGloss('g11','algebrustæða')"><strong>algebrustæða</strong></span>
+                <span class="gchip" onclick="showGloss('g11','breyta')"><strong>breyta</strong></span>
+              </div>
+              <div class="gpopup" id="g11-popup">
+                <div class="gpopup-word" id="g11-word"></div>
+                <div class="gpopup-def" id="g11-def"></div>
+                <div class="gpopup-ex" id="g11-ex"></div>
+              </div>
+            </div>
+            <h4>Hvað er <strong>liður</strong>?</h4>
+            <p><strong>Liðir</strong> eru tölur eða bókstafir sem eru tengdir með <strong>+</strong> eða <strong>−</strong>. Í stæðunni <strong>3a + 2b + 5</strong> eru þrír <strong>liðir</strong>.</p>
+            <h4>Líkir <strong>liðir</strong></h4>
+            <p><strong>Líkir liðir</strong> hafa sama bókstaf — þá má draga þá saman eins og við leggjum saman tölur:</p>
+            <span class="ex-eq">3a + 2a = 5a &nbsp;&nbsp; (rétt eins og 3 + 2 = 5)</span>
+            <span class="ex-eq">7s − 2s = 5s</span>
+            <h4>Ólíkir <strong>liðir</strong></h4>
+            <p><strong>Liðir</strong> með <strong>mismunandi</strong> bókstöfum eru ólíkir — þá er <em>ekki</em> hægt að draga saman:</p>
+            <span class="ex-eq">2a + 3b &nbsp;→&nbsp; er þegar einfaldað (ekki hægt að einfalda meira)</span>
+            <h4><strong>Fastar</strong></h4>
+            <p>Tölur án bókstafs (fastar) má alltaf draga saman sín á milli:</p>
+            <span class="ex-eq">8p − 5 + 4p + 7 = 12p + 2</span>
+          </div>
+        </div>
+        <div class="cards-grid">
+          <div class="vcard" onclick="openModal('b532')">
+            <div class="vcard-id">5.32</div>
+            <div class="vcard-title">Grunndæmi</div>
+            <div class="vcard-desc">3p + 5p, 7s − 2s, 10a − 3a...</div>
+            <div class="vcard-footer"><span class="vcard-count">6 dæmi</span><span class="vcard-arrow">↗</span></div>
+          </div>
+          <div class="vcard" onclick="openModal('b533')">
+            <div class="vcard-id">5.33</div>
+            <div class="vcard-title">Fleiri liðir</div>
+            <div class="vcard-desc">12k + 16k − 20k + 4k...</div>
+            <div class="vcard-footer"><span class="vcard-count">4 dæmi</span><span class="vcard-arrow">↗</span></div>
+          </div>
+          <div class="vcard" onclick="openModal('b535')">
+            <div class="vcard-id">5.35</div>
+            <div class="vcard-title">Líkir liðir + fastar</div>
+            <div class="vcard-desc">5k + 2k, 3h + 4 − h, 8 − 3a + 3...</div>
+            <div class="vcard-footer"><span class="vcard-count">10 dæmi</span><span class="vcard-arrow">↗</span></div>
+          </div>
+          <div class="vcard" onclick="openModal('b536')">
+            <div class="vcard-id">5.36</div>
+            <div class="vcard-title">Tveir bókstafir</div>
+            <div class="vcard-desc">3a + 2b + 2a + 10b, m − 2n + 3m + 5n...</div>
+            <div class="vcard-footer"><span class="vcard-count">6 dæmi</span><span class="vcard-arrow">↗</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 1-2 Gildi stæðna -->
+      <div class="subcat" id="sub1-2">
+        <div class="subcat-label">
+          <span class="subcat-num">1-2</span>
+          <span class="subcat-name">Gildi stæðna</span>
+          <span class="subcat-line"></span>
+        </div>
+        <div class="explainer">
+          <button class="explainer-btn" onclick="toggleExplainer(this)">
+            <span class="explainer-icon">▶</span> Útskýring – hvernig finn ég gildi stæðu?
+          </button>
+          <div class="explainer-body">
+            <div class="glossary-section">
+              <span class="glossary-label">Hugtök</span>
+              <div class="glossary" id="g12">
+                <span class="gchip" onclick="showGloss('g12','algebrustæða')"><strong>algebrustæða</strong></span>
+                <span class="gchip" onclick="showGloss('g12','breyta')"><strong>breyta</strong></span>
+                <span class="gchip" onclick="showGloss('g12','gildi stæðu')"><strong>gildi stæðu</strong></span>
+                <span class="gchip" onclick="showGloss('g12','margfeldi')"><strong>margfeldi</strong></span>
+              </div>
+              <div class="gpopup" id="g12-popup"><div class="gpopup-word" id="g12-word"></div><div class="gpopup-def" id="g12-def"></div><div class="gpopup-ex" id="g12-ex"></div></div>
+            </div>
+            <h4>Hvað er <strong>gildi stæðu</strong>?</h4>
+            <p>Þegar við setjum tölu inn í stað bókstafsins fáum við <strong>gildi stæðunnar</strong> — þ.e. við reiknum út niðurstöðuna.</p>
+            <h4>Dæmi</h4>
+            <p>Stæðan er <strong>2x + 3</strong>. Hvað er gildið þegar x = 4?</p>
+            <span class="ex-eq">2 · 4 + 3 = 8 + 3 = 11</span>
+            <h4>Margföldun og deiling</h4>
+            <p>Þegar tala og bókstafur eru saman margfaldaðir, margfaldast tölurnar saman en bókstafirnir haldast:</p>
+            <span class="ex-eq">3 · 6b = 18b</span>
+            <span class="ex-eq">10m : 2 = 5m</span>
+            <span class="ex-eq">5b · 9b = 45b²</span>
+          </div>
+        </div>
+        <div class="cards-grid">
+          <div class="vcard" onclick="openModal('b534')">
+            <div class="vcard-id">5.34</div>
+            <div class="vcard-title">Ísadæmið</div>
+            <div class="vcard-desc">Setja tölu inn fyrir bókstaf — k = 150 kr., p = 100 kr.</div>
+            <div class="vcard-footer"><span class="vcard-count">4 dæmi</span><span class="vcard-arrow">↗</span></div>
+          </div>
+          <div class="vcard" onclick="openModal('b544')">
+            <div class="vcard-id">5.44</div>
+            <div class="vcard-title">Gildisreikningar</div>
+            <div class="vcard-desc">x = 2, m = 10, a + 3 = 7 — hvað er...?</div>
+            <div class="vcard-footer"><span class="vcard-count">6 dæmi</span><span class="vcard-arrow">↗</span></div>
+          </div>
+          <div class="vcard" onclick="openModal('b545')">
+            <div class="vcard-id">5.45</div>
+            <div class="vcard-title">Margföldun og deiling</div>
+            <div class="vcard-desc">3·6b, 5·2d, 10a:5, 30n:6, 5b·9b...</div>
+            <div class="vcard-footer"><span class="vcard-count">9 dæmi</span><span class="vcard-arrow">↗</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 1-3 Stæður úr raunveruleikanum -->
+      <div class="subcat" id="sub1-3">
+        <div class="subcat-label">
+          <span class="subcat-num">1-3</span>
+          <span class="subcat-name">Stæður úr raunveruleikanum</span>
+          <span class="subcat-line"></span>
+        </div>
+        <div class="explainer">
+          <button class="explainer-btn" onclick="toggleExplainer(this)">
+            <span class="explainer-icon">▶</span> Útskýring – hvernig set ég upp stæðu?
+          </button>
+          <div class="explainer-body">
+            <div class="glossary-section">
+              <span class="glossary-label">Hugtök</span>
+              <div class="glossary" id="g13">
+                <span class="gchip" onclick="showGloss('g13','algebrustæða')"><strong>algebrustæða</strong></span>
+                <span class="gchip" onclick="showGloss('g13','breyta')"><strong>breyta</strong></span>
+                <span class="gchip" onclick="showGloss('g13','bókstafareikningur')"><strong>bókstafareikningur</strong></span>
+              </div>
+              <div class="gpopup" id="g13-popup"><div class="gpopup-word" id="g13-word"></div><div class="gpopup-def" id="g13-def"></div><div class="gpopup-ex" id="g13-ex"></div></div>
+            </div>
+            <h4>Að setja upp stæðu</h4>
+            <p>Þegar við vitum ekki einhverja tölu í dæmi getum við tákna hana með bókstaf og byggt upp stæðu.</p>
+            <h4>Dæmi – bíómiðar</h4>
+            <p>Bíómiði kostar <strong>b</strong> kr. og safi <strong>90</strong> kr. Fjórir vinir fara í bíó:</p>
+            <span class="ex-eq">4 · (b + 90) = 4b + 360</span>
+            <p>Ef b = 750 kr.: &nbsp; 4 · 750 + 360 = 3360 kr.</p>
+            <h4>Sviginn hjálpar</h4>
+            <p>Sviginn táknar að við gerum það sama fyrir hvern og einn — margföldunin dreifist yfir alla <strong>liðina</strong> inni í sviganum.</p>
+          </div>
+        </div>
+        <div class="cards-grid">
+          <div class="vcard" onclick="openModal('b556')">
+            <div class="vcard-id">5.56</div>
+            <div class="vcard-title">Þóra á gönguskíðum</div>
+            <div class="vcard-desc">Búa til stæðu með sviga og reikna vegalengd</div>
+            <div class="vcard-footer"><span class="vcard-count">3 dæmi</span><span class="vcard-arrow">↗</span></div>
+          </div>
+          <div class="vcard" onclick="openModal('b557')">
+            <div class="vcard-id">5.57</div>
+            <div class="vcard-title">Krakkar og ís</div>
+            <div class="vcard-desc">Stæður fyrir hve mikið 8 krakkar borga samtals</div>
+            <div class="vcard-footer"><span class="vcard-count">4 dæmi</span><span class="vcard-arrow">↗</span></div>
+          </div>
+          <div class="vcard" onclick="openModal('b558')">
+            <div class="vcard-id">5.58</div>
+            <div class="vcard-title">Viðar og hringfarar</div>
+            <div class="vcard-desc">Afsláttur — búa til stæðu og margfalda upp úr sviga</div>
+            <div class="vcard-footer"><span class="vcard-count">3 dæmi</span><span class="vcard-arrow">↗</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 1-4 Stæður með sviga -->
+      <div class="subcat" id="sub1-4">
+        <div class="subcat-label">
+          <span class="subcat-num">1-4</span>
+          <span class="subcat-name">Stæður með sviga</span>
+          <span class="subcat-line"></span>
+        </div>
+        <div class="explainer">
+          <button class="explainer-btn" onclick="toggleExplainer(this)">
+            <span class="explainer-icon">▶</span> Útskýring – hvernig margfaldast inn í sviga?
+          </button>
+          <div class="explainer-body">
+            <div class="glossary-section">
+              <span class="glossary-label">Hugtök</span>
+              <div class="glossary" id="g14">
+                <span class="gchip" onclick="showGloss('g14','dreifiregla')"><strong>dreifiregla</strong></span>
+                <span class="gchip" onclick="showGloss('g14','margfeldi')"><strong>margfeldi</strong></span>
+                <span class="gchip" onclick="showGloss('g14','liður')"><strong>liður</strong></span>
+                <span class="gchip" onclick="showGloss('g14','algebrustæða')"><strong>algebrustæða</strong></span>
+              </div>
+              <div class="gpopup" id="g14-popup"><div class="gpopup-word" id="g14-word"></div><div class="gpopup-def" id="g14-def"></div><div class="gpopup-ex" id="g14-ex"></div></div>
+            </div>
+            <h4><strong>Dreifireglan</strong></h4>
+            <p>Þegar tala eða bókstafur er utan við sviga, margfaldast hann við <strong>alla liðina</strong> inni í sviganum:</p>
+            <span class="ex-eq">a · (b + c) = ab + ac</span>
+            <span class="ex-eq">a · (b − c) = ab − ac</span>
+            <h4>Dæmi</h4>
+            <span class="ex-eq">3(a + 1) = 3a + 3</span>
+            <span class="ex-eq">(x − 6) · 9 = 9x − 54</span>
+            <span class="ex-eq">2(3a − 2b) = 6a − 4b</span>
+            <h4>Mundu!</h4>
+            <p>Ef <strong>mínus</strong> er utan við sviga, snýst formerki allra <strong>liðanna</strong> inni í sviganum:</p>
+            <span class="ex-eq">−(a + b) = −a − b</span>
+          </div>
+        </div>
+        <div class="cards-grid">
+          <div class="vcard" onclick="openModal('b554')">
+            <div class="vcard-id">5.54</div>
+            <div class="vcard-title">Grunndæmi</div>
+            <div class="vcard-desc">3(a+1), (4+b)·2, (x−6)·9...</div>
+            <div class="vcard-footer"><span class="vcard-count">6 dæmi</span><span class="vcard-arrow">↗</span></div>
+          </div>
+          <div class="vcard" onclick="openModal('b555')">
+            <div class="vcard-id">5.55</div>
+            <div class="vcard-title">Erfiðara</div>
+            <div class="vcard-desc">⅓(6a−9), 4(¾ + x/8), b(b²−ab)...</div>
+            <div class="vcard-footer"><span class="vcard-count">4 dæmi</span><span class="vcard-arrow">↗</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="section-divider">
+
+    <!-- ══ ÞÁTTUR 2: JÖFNUR ══ -->
+    <div class="section" id="þattur2">
+      <div class="section-head">
+        <span class="section-tag jofn">Þáttur 2</span>
+        <span class="section-title">Jöfnur</span>
+      </div>
+      <p class="section-desc">Einangra x, prófa lausnir og setja upp jöfnur úr raunveruleikanum</p>
+
+      <!-- 2-1 Einangra x -->
+      <div class="subcat" id="sub2-1">
+        <div class="subcat-label">
+          <span class="subcat-num">2-1</span>
+          <span class="subcat-name">Einangra x</span>
+          <span class="subcat-line"></span>
+        </div>
+        <div class="explainer">
+          <button class="explainer-btn" onclick="toggleExplainer(this)">
+            <span class="explainer-icon">▶</span> Útskýring – hvernig leysi ég jöfnu?
+          </button>
+          <div class="explainer-body">
+            <div class="glossary-section">
+              <span class="glossary-label">Hugtök</span>
+              <div class="glossary" id="g21">
+                <span class="gchip" onclick="showGloss('g21','jafna')"><strong>jafna</strong></span>
+                <span class="gchip" onclick="showGloss('g21','óþekkt stærð')"><strong>óþekkt stærð</strong></span>
+                <span class="gchip" onclick="showGloss('g21','jöfnumerki')"><strong>jöfnumerki</strong></span>
+                <span class="gchip" onclick="showGloss('g21','andhverfar aðgerðir')"><strong>andhverfar aðgerðir</strong></span>
+                <span class="gchip" onclick="showGloss('g21','lausn')"><strong>lausn</strong></span>
+              </div>
+              <div class="gpopup" id="g21-popup"><div class="gpopup-word" id="g21-word"></div><div class="gpopup-def" id="g21-def"></div><div class="gpopup-ex" id="g21-ex"></div></div>
+            </div>
+            <h4>Meginreglan</h4>
+            <p><strong>Jafna</strong> er eins og <strong>jafnvægisvog</strong> — ef við gerum það sama beggja vegna við <strong>jöfnumerkið</strong> heldur hún jafnvægi.</p>
+            <h4>Skref fyrir skref</h4>
+            <p>Markmiðið er að fá <strong>x eitt sér</strong> annarri hlið. Við notum <strong>andhverfa aðgerð</strong> til að hreinsa hvern lið:</p>
+            <span class="ex-eq">2x + 8 = 22</span>
+            <span class="ex-eq">2x + 8 − 8 = 22 − 8 &nbsp;→&nbsp; 2x = 14</span>
+            <span class="ex-eq">2x : 2 = 14 : 2 &nbsp;→&nbsp; x = 7</span>
+            <h4><strong>Prófaðu alltaf!</strong></h4>
+            <p>Settu svarið þitt inn í upphaflegu <strong>jöfnuna</strong> til að staðfesta að það sé rétt:</p>
+            <span class="ex-eq">2 · 7 + 8 = 14 + 8 = 22 ✓</span>
+          </div>
+        </div>
+        <div class="cards-grid">
+          <div class="vcard" onclick="openModal('m1701')">
+            <div class="vcard-id">1701</div>
+            <div class="vcard-title">Einfaldar jöfnur</div>
+            <div class="vcard-desc">Plús og mínus — einangra x báðum megin eða færa yfir</div>
+            <div class="vcard-footer"><span class="vcard-count">4 dæmi</span><span class="vcard-arrow">↗</span></div>
+          </div>
+          <div class="vcard" onclick="openModal('m1702')">
+            <div class="vcard-id">1702</div>
+            <div class="vcard-title">Margföldun</div>
+            <div class="vcard-desc">2x = 28, 3x = 261, 0,2x = 14...</div>
+            <div class="vcard-footer"><span class="vcard-count">4 dæmi</span><span class="vcard-arrow">↗</span></div>
+          </div>
+          <div class="vcard" onclick="openModal('m1703')">
+            <div class="vcard-id">1703</div>
+            <div class="vcard-title">Tvö skref</div>
+            <div class="vcard-desc">2x + 8 = 22, 0,1x + 2,3 = 14,8...</div>
+            <div class="vcard-footer"><span class="vcard-count">4 dæmi</span><span class="vcard-arrow">↗</span></div>
+          </div>
+          <div class="vcard" onclick="openModal('m1704')">
+            <div class="vcard-id">1704</div>
+            <div class="vcard-title">Neikvæður stuðull</div>
+            <div class="vcard-desc">4 − 2x = 12, 18 − 5x = 2353...</div>
+            <div class="vcard-footer"><span class="vcard-count">3 dæmi</span><span class="vcard-arrow">↗</span></div>
+          </div>
+          <div class="vcard" onclick="openModal('m1705')">
+            <div class="vcard-id">1705</div>
+            <div class="vcard-title">Líkir liðir</div>
+            <div class="vcard-desc">4x − 2x = 8, x + x + 20 + x + 30 = 500...</div>
+            <div class="vcard-footer"><span class="vcard-count">3 dæmi</span><span class="vcard-arrow">↗</span></div>
+          </div>
+          <div class="vcard" onclick="openModal('m1706')">
+            <div class="vcard-id">1706</div>
+            <div class="vcard-title">Líkir liðir – neikvæðar</div>
+            <div class="vcard-desc">2x − 4x = 10, 8x + 7 − 9x − 11 = 14,4...</div>
+            <div class="vcard-footer"><span class="vcard-count">3 dæmi</span><span class="vcard-arrow">↗</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2-2 Prófa lausnir -->
+      <div class="subcat" id="sub2-2">
+        <div class="subcat-label">
+          <span class="subcat-num">2-2</span>
+          <span class="subcat-name">Prófa lausnir</span>
+          <span class="subcat-line"></span>
+        </div>
+        <div class="explainer">
+          <button class="explainer-btn" onclick="toggleExplainer(this)">
+            <span class="explainer-icon">▶</span> Útskýring – hvernig prófa ég lausn?
+          </button>
+          <div class="explainer-body">
+            <div class="glossary-section">
+              <span class="glossary-label">Hugtök</span>
+              <div class="glossary" id="g22">
+                <span class="gchip" onclick="showGloss('g22','jafna')"><strong>jafna</strong></span>
+                <span class="gchip" onclick="showGloss('g22','lausn')"><strong>lausn</strong></span>
+                <span class="gchip" onclick="showGloss('g22','jöfnumerki')"><strong>jöfnumerki</strong></span>
+              </div>
+              <div class="gpopup" id="g22-popup"><div class="gpopup-word" id="g22-word"></div><div class="gpopup-def" id="g22-def"></div><div class="gpopup-ex" id="g22-ex"></div></div>
+            </div>
+            <h4>Að prófa <strong>lausn</strong></h4>
+            <p>Þegar þú hefur leyst <strong>jöfnu</strong> skaltu alltaf <strong>setja svarið inn</strong> í upphaflegu <strong>jöfnuna</strong> og athuga hvort báðar h<strong>liðar</strong> gefi sama tölu.</p>
+            <h4>Dæmi</h4>
+            <p><strong>Jafnan</strong> er <strong>7x = 4x + 15</strong> og <strong>lausnin</strong> er x = 5. Prófum:</p>
+            <span class="ex-eq">Vinstri hlið: 7 · 5 = 35</span>
+            <span class="ex-eq">Hægri hlið: 4 · 5 + 15 = 20 + 15 = 35 ✓</span>
+            <p>Báðar h<strong>liðar</strong> eru <strong>jafna</strong>r → <strong>lausnin</strong> er rétt!</p>
+          </div>
+        </div>
+        <div class="cards-grid">
+          <div class="vcard" onclick="openModal('m1707')">
+            <div class="vcard-id">1707</div>
+            <div class="vcard-title">Steinar eða Gunnar?</div>
+            <div class="vcard-desc">Prófaðu hvor hefur rétt — x = 4 eða x = 6?</div>
+            <div class="vcard-footer"><span class="vcard-count">1 dæmi</span><span class="vcard-arrow">↗</span></div>
+          </div>
+          <div class="vcard" onclick="openModal('b572')">
+            <div class="vcard-id">5.72</div>
+            <div class="vcard-title">Leysa og prófa</div>
+            <div class="vcard-desc">x+8=23, 3x+5=x+9, ½x−1=2−x...</div>
+            <div class="vcard-footer"><span class="vcard-count">9 dæmi</span><span class="vcard-arrow">↗</span></div>
+          </div>
+          <div class="vcard" onclick="openModal('b581')">
+            <div class="vcard-id">5.81</div>
+            <div class="vcard-title">Fjórar tillögur</div>
+            <div class="vcard-desc">Prófaðu hverja lausn — ein er rétt</div>
+            <div class="vcard-footer"><span class="vcard-count">3 dæmi</span><span class="vcard-arrow">↗</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2-3 Orðadæmi -->
+      <div class="subcat" id="sub2-3">
+        <div class="subcat-label">
+          <span class="subcat-num">2-3</span>
+          <span class="subcat-name">Orðadæmi</span>
+          <span class="subcat-line"></span>
+        </div>
+        <div class="explainer">
+          <button class="explainer-btn" onclick="toggleExplainer(this)">
+            <span class="explainer-icon">▶</span> Útskýring – hvernig set ég upp jöfnu úr texta?
+          </button>
+          <div class="explainer-body">
+            <div class="glossary-section">
+              <span class="glossary-label">Hugtök</span>
+              <div class="glossary" id="g23">
+                <span class="gchip" onclick="showGloss('g23','jafna')"><strong>jafna</strong></span>
+                <span class="gchip" onclick="showGloss('g23','óþekkt stærð')"><strong>óþekkt stærð</strong></span>
+                <span class="gchip" onclick="showGloss('g23','breyta')"><strong>breyta</strong></span>
+                <span class="gchip" onclick="showGloss('g23','lausn')"><strong>lausn</strong></span>
+              </div>
+              <div class="gpopup" id="g23-popup"><div class="gpopup-word" id="g23-word"></div><div class="gpopup-def" id="g23-def"></div><div class="gpopup-ex" id="g23-ex"></div></div>
+            </div>
+            <h4>Þrjú skref</h4>
+            <p><strong>1.</strong> Lestu dæmið vandlega og ákveddu hvað x táknar.</p>
+            <p><strong>2.</strong> Settu upp <strong>jöfnu</strong> með x út frá upplýsingunum.</p>
+            <p><strong>3.</strong> Leystu <strong>jöfnuna</strong> og svaraðu spurningunni með orðum.</p>
+            <h4>Dæmi</h4>
+            <p>Bróðir er 3 árum eldri en systir. Saman eru þau 17 ára. Hve gömul er systirin?</p>
+            <span class="ex-eq">Látum x = aldur systur</span>
+            <span class="ex-eq">Bróðir = x + 3</span>
+            <span class="ex-eq">x + (x + 3) = 17 &nbsp;→&nbsp; 2x = 14 &nbsp;→&nbsp; x = 7</span>
+            <p>Systir er <strong>7 ára</strong>, bróðir er <strong>10 ára</strong>.</p>
+          </div>
+        </div>
+        <div class="cards-grid">
+          <div class="vcard" onclick="openModal('b583')">
+            <div class="vcard-id">5.83</div>
+            <div class="vcard-title">Aldursdæmi</div>
+            <div class="vcard-desc">Bróðir og systir, Ásta/Birna/Sylvía, ræningjarnir...</div>
+            <div class="vcard-footer"><span class="vcard-count">4 dæmi</span><span class="vcard-arrow">↗</span></div>
+          </div>
+          <div class="vcard" onclick="openModal('b584')">
+            <div class="vcard-id">5.84</div>
+            <div class="vcard-title">Fjöldi og lengd</div>
+            <div class="vcard-desc">Frímerki á blaðsíðu, lengd striks...</div>
+            <div class="vcard-footer"><span class="vcard-count">2 dæmi</span><span class="vcard-arrow">↗</span></div>
+          </div>
+          <div class="vcard" onclick="openModal('b585')">
+            <div class="vcard-id">5.85</div>
+            <div class="vcard-title">Tölur og sambönd</div>
+            <div class="vcard-desc">Leggðu 7 við, deildu með 2, summa þriggja talna...</div>
+            <div class="vcard-footer"><span class="vcard-count">5 dæmi</span><span class="vcard-arrow">↗</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2-4 Ójöfnur -->
+      <div class="subcat" id="sub2-4">
+        <div class="subcat-label">
+          <span class="subcat-num">2-4</span>
+          <span class="subcat-name">Ójöfnur</span>
+          <span class="subcat-line"></span>
+        </div>
+        <div class="explainer">
+          <button class="explainer-btn" onclick="toggleExplainer(this)">
+            <span class="explainer-icon">▶</span> Útskýring – hvað eru ójöfnur?
+          </button>
+          <div class="explainer-body">
+            <div class="glossary-section">
+              <span class="glossary-label">Hugtök</span>
+              <div class="glossary" id="g24">
+                <span class="gchip" onclick="showGloss('g24','jafna')"><strong>jafna</strong></span>
+                <span class="gchip" onclick="showGloss('g24','ójafna')"><strong>ójafna</strong></span>
+                <span class="gchip" onclick="showGloss('g24','óþekkt stærð')"><strong>óþekkt stærð</strong></span>
+              </div>
+              <div class="gpopup" id="g24-popup"><div class="gpopup-word" id="g24-word"></div><div class="gpopup-def" id="g24-def"></div><div class="gpopup-ex" id="g24-ex"></div></div>
+            </div>
+            <h4>Ó<strong>jöfnur</strong> vs. <strong>jöfnur</strong></h4>
+            <p>Í <strong>jöfnu</strong> segir <strong>=</strong> að tvær stæður séu <strong>jafna</strong>r. Í ó<strong>jöfnu</strong> lýsum við því að ein stærð er <strong>stærri eða minni</strong> en önnur.</p>
+            <h4>Tákn</h4>
+            <span class="ex-eq">x &lt; 5 &nbsp;&nbsp; (x er minna en 5)</span>
+            <span class="ex-eq">x &gt; 3 &nbsp;&nbsp; (x er stærra en 3)</span>
+            <span class="ex-eq">x ≤ 10 &nbsp; (x er minna en eða jafnt 10)</span>
+            <h4>Mundu!</h4>
+            <p>Þegar við <strong>margföldum</strong> eða <strong>deilum</strong> báðar hliðar ójöfnu með <strong>neikvæðri tölu</strong> snýst táknið við — &lt; verður &gt; og öfugt.</p>
+            <span class="ex-eq">−x &lt; 3 &nbsp;→&nbsp; x &gt; −3 &nbsp; (snýst við!)</span>
+          </div>
+        </div>
+        <div class="cards-grid">
+          <div class="vcard" onclick="openModal('oj01')">
+            <div class="vcard-id">Ó-1</div>
+            <div class="vcard-title">Hvað tákna táknin?</div>
+            <div class="vcard-desc">x &lt; 8, y &gt; 3, z ≤ 10, a ≥ 5...</div>
+            <div class="vcard-footer"><span class="vcard-count">6 dæmi</span><span class="vcard-arrow">↗</span></div>
+          </div>
+          <div class="vcard" onclick="openModal('oj02')">
+            <div class="vcard-id">Ó-2</div>
+            <div class="vcard-title">Settu inn rétt tákn</div>
+            <div class="vcard-desc">7 ___ 4, −2 ___ 1, ½ ___ 0,4...</div>
+            <div class="vcard-footer"><span class="vcard-count">8 dæmi</span><span class="vcard-arrow">↗</span></div>
+          </div>
+          <div class="vcard" onclick="openModal('oj03')">
+            <div class="vcard-id">Ó-3</div>
+            <div class="vcard-title">Er talan lausn?</div>
+            <div class="vcard-desc">Prófaðu hvort x = 3, x = 7, x = 4... uppfylla ójöfnuna</div>
+            <div class="vcard-footer"><span class="vcard-count">7 dæmi</span><span class="vcard-arrow">↗</span></div>
+          </div>
+          <div class="vcard" onclick="openModal('oj04')">
+            <div class="vcard-id">Ó-4</div>
+            <div class="vcard-title">Ójöfnur úr lífi</div>
+            <div class="vcard-desc">Bíómiðar, þyngd í lyftu, hæðarmörk í tívolí...</div>
+            <div class="vcard-footer"><span class="vcard-count">4 dæmi</span><span class="vcard-arrow">↗</span></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <span class="footer-text">Stærðfræði Vefur – 8. Bekkur</span>
+    <span class="footer-text">Álftamýrarskóli</span>
+  </div>
+</footer>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="overlay" onclick="closeOnOverlay(event)">
+  <div class="modal" id="modal-box">
+    <div class="modal-head">
+      <div class="modal-head-left">
+        <span class="modal-id" id="modal-id"></span>
+        <span class="modal-title" id="modal-title"></span>
+      </div>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+    <div class="modal-body" id="modal-body"></div>
+  </div>
+</div>
+
+<script>
+const verkefni = {
+  // ── BÓKSTAFAREIKNINGUR ──
+  b532: {
+    id: '5.32', title: 'Grunndæmi – líkir liðir',
+    instruction: 'Einfaldaðu stæðurnar með því að draga saman <strong>líka liði</strong>.',
+    problems: [
+      { label: 'a)', eq: '3p + 5p', ans: '8p' },
+      { label: 'b)', eq: '7s − 2s', ans: '5s' },
+      { label: 'c)', eq: '10a − 3a', ans: '7a' },
+      { label: 'd)', eq: '12b + 8b + 3b', ans: '23b' },
+      { label: 'e)', eq: '5u + 2u − u', ans: '6u' },
+      { label: 'f)', eq: '6v − 5v + 8v', ans: '9v' },
+    ]
+  },
+  b533: {
+    id: '5.33', title: 'Fleiri liðir',
+    instruction: 'Einfaldaðu stæðurnar.',
+    problems: [
+      { label: 'a)', eq: '12k + 16k − 20k + 4k', ans: '12k' },
+      { label: 'b)', eq: '30m − 12m − 5m − 6m', ans: '7m' },
+      { label: 'c)', eq: '3n + 14n − 8n − 8n', ans: 'n' },
+      { label: 'd)', eq: '20p − 18p − 3p + p', ans: '0' },
+    ]
+  },
+  b535: {
+    id: '5.35', title: 'Líkir liðir + fastar',
+    instruction: 'Dragðu saman <strong>fastaliði</strong> og liði með sama bókstaf.',
+    problems: [
+      { label: 'a)', eq: '5k + 2k', ans: '7k' },
+      { label: 'b)', eq: '6b − 4b', ans: '2b' },
+      { label: 'c)', eq: '3h + 4 − h', ans: '2h + 4' },
+      { label: 'd)', eq: '8 − 3a + 3', ans: '11 − 3a' },
+      { label: 'e)', eq: '5 + 2b − b', ans: '5 + b' },
+      { label: 'f)', eq: '2k − 5k', ans: '−3k' },
+      { label: 'g)', eq: 'p − 2 + 3p − 2', ans: '4p − 4' },
+      { label: 'h)', eq: '6s + 12 − 5s + 7', ans: 's + 19' },
+      { label: 'i)', eq: '6r − 5s − 5r + s', ans: 'r − 4s' },
+      { label: 'j)', eq: '15a − 10 + b + 5a', ans: '20a + b − 10' },
+    ]
+  },
+  b536: {
+    id: '5.36', title: 'Tveir bókstafir',
+    instruction: 'Dragðu saman <strong>fastaliði</strong> og liði með sama bókstaf.',
+    problems: [
+      { label: 'a)', eq: '3a + 2b + 2a + 10b', ans: '5a + 12b' },
+      { label: 'b)', eq: 'm − 2n + 3m + 5n', ans: '4m + 3n' },
+      { label: 'c)', eq: '10p + 4s + 5 − 10p + 4s', ans: '8s + 5' },
+      { label: 'd)', eq: '3i − 4j − 2 − 5i − 2j + 15', ans: '−2i − 6j + 13' },
+      { label: 'e)', eq: 'u + v + u + u + u − 3u', ans: 'u + v' },
+      { label: 'f)', eq: '3k + 4 + 2k − 5 − 4k − 2', ans: 'k − 3' },
+    ]
+  },
+  b534: {
+    id: '5.34', title: 'Ísadæmið',
+    instruction: 'Ís í formi kostar k krónur og pinnaís kostar p krónur stykkið.',
+    problems: [
+      { label: 'a) Björn', eq: '2 ísar í formi og 4 pinnaísar', ans: '2k + 4p' },
+      { label: 'a) Sylvía', eq: '6 ísar í formi og 5 pinnaísar', ans: '6k + 5p' },
+      { label: 'b) Samtals', eq: 'Stæða fyrir samtals', ans: '11k + 11p' },
+      { label: 'c) Gildi', eq: 'k = 150 kr., p = 100 kr.', ans: 'Anna: 650, Björn: 700, Sylvía: 1400' },
+      { label: 'd) Samtals', eq: 'Hve mikið borga þau samtals?', ans: '11 · 150 + 11 · 100 = 2750 kr.' },
+    ]
+  },
+  b544: {
+    id: '5.44', title: 'Gildisreikningar',
+    instruction: 'Reiknaðu dæmin með því að nota gefin gildi.',
+    problems: [
+      { label: 'a)', eq: 'x = 2. Hvað er 3 meira en x?', ans: '5' },
+      { label: 'b)', eq: 'm = 10. Hvað er helmingurinn af m?', ans: '5' },
+      { label: 'c)', eq: 'x = 5. Hvað er 2x + 1?', ans: '11' },
+      { label: 'd)', eq: 'a + 3 = 7. Hvað er 2a − 1?', ans: '7' },
+      { label: 'e)', eq: 'm + n = 15. Hvað er 2m + 2n?', ans: '30' },
+      { label: 'f)', eq: 'a = b + 2. Hvað er 2a − 4?', ans: '2b' },
+    ]
+  },
+  b545: {
+    id: '5.45', title: 'Margföldun og deiling með bókstöfum',
+    instruction: 'Reiknaðu dæmin og einfaldaðu eins og hægt er.',
+    problems: [
+      { label: 'a)', eq: '3 · 6b', ans: '18b' },
+      { label: 'b)', eq: '5 · 2d', ans: '10d' },
+      { label: 'c)', eq: '4a · 5', ans: '20a' },
+      { label: 'd)', eq: '6k · 10', ans: '60k' },
+      { label: 'e)', eq: '10m : 2', ans: '5m' },
+      { label: 'f)', eq: '30n : 6', ans: '5n' },
+      { label: 'g)', eq: '5b · 9b', ans: '45b²' },
+      { label: 'h)', eq: '10a : 5', ans: '2a' },
+      { label: 'i)', eq: '6x²z³ : x', ans: '6xz³' },
+    ]
+  },
+  b556: {
+    id: '5.56', title: 'Þóra á gönguskíðum',
+    instruction: 'Þóra gengur v km á hverri hringlotu. Annan dag gekk hún 4 hringi, annan dag 7 hringi.',
+    problems: [
+      { label: 'a)', eq: 'Stæða með sviga fyrir samtals', ans: '(4 + 7) · v = 11v' },
+      { label: 'b)', eq: 'Margfaldaðu upp úr sviganum', ans: '4v + 7v = 11v' },
+      { label: 'c)', eq: 'Hve langt ef v = 3,5 km?', ans: '11 · 3,5 = 38,5 km' },
+    ]
+  },
+  b557: {
+    id: '5.57', title: 'Krakkar og ís',
+    instruction: 'Fjórar stelpur og fjórir strákar kaupa hvert sinn ís fyrir x kr. og drykk fyrir y kr.',
+    problems: [
+      { label: 'a)', eq: 'Stæða fyrir samtals', ans: '8(x + y) = 8x + 8y' },
+      { label: 'b)', eq: 'Greiða með 5000 kr. — hvað fá þau til baka?', ans: '5000 − 8x − 8y' },
+      { label: 'c)', eq: 'Stelpurnar kaupa líka ís á <span class="frac"><sup>x</sup>⁄<sub>2</sub></span> — nýja stæða', ans: '5000 − 8x − 8y − 4·(<span class="frac"><sup>x</sup>⁄<sub>2</sub></span>) = 5000 − 10x − 8y' },
+      { label: 'd)', eq: 'y = 150 kr., <span class="frac"><sup>x</sup>⁄<sub>2</sub></span> = 100 kr. (x = 200). Hvað á eftir?', ans: '5000 − 10 · 200 − 8 · 150 = 5000 − 2000 − 1200 = 1800 kr.' },
+    ]
+  },
+  b558: {
+    id: '5.58', title: 'Viðar og hringfarar',
+    instruction: 'Viðar kaupir hringfara á 840 kr. stykkið handa 25 nemendum. Afslátturinn á hvern er a kr.',
+    problems: [
+      { label: 'a)', eq: 'Stæða með sviga', ans: '25 · (840 − a)' },
+      { label: 'b)', eq: 'Margfaldaðu upp úr sviganum', ans: '25 · 840 − 25a = 21000 − 25a' },
+      { label: 'c)', eq: 'Hve mikið ef a = 100 kr.?', ans: '21000 − 25 · 100 = 21000 − 2500 = 18500 kr.' },
+    ]
+  },
+  b554: {
+    id: '5.54', title: 'Stæður með sviga – grunndæmi',
+    instruction: 'Notaðu réttar reiknireglur til að margfalda. Skráðu eins einföld svör og hægt er.',
+    problems: [
+      { label: 'a)', eq: '3(a + 1)', ans: '3a + 3' },
+      { label: 'b)', eq: '(4 + b) · 2', ans: '8 + 2b' },
+      { label: 'c)', eq: '(x − 6) · 9', ans: '9x − 54' },
+      { label: 'd)', eq: 'm(10 − 3)', ans: '7m' },
+      { label: 'e)', eq: '(2 + 4x)y', ans: '2y + 4xy' },
+      { label: 'f)', eq: '(3s + 5t) · 7', ans: '21s + 35t' },
+    ]
+  },
+  b555: {
+    id: '5.55', title: 'Stæður með sviga – erfiðara',
+    instruction: 'Notaðu réttar reiknireglur til að margfalda. Skráðu eins einföld svör og mögulegt er.',
+    problems: [
+      { label: 'a)', eq: '<span class="frac"><sup>1</sup>⁄<sub>3</sub></span>(6a − 9)', ans: '2a − 3' },
+      { label: 'b)', eq: '4(<span class="frac"><sup>3</sup>⁄<sub>4</sub></span> + <span class="frac"><sup>x</sup>⁄<sub>8</sub></span>)', ans: '3 + <span class="frac"><sup>x</sup>⁄<sub>2</sub></span>' },
+      { label: 'c)', eq: '(1/a + 2)a', ans: '1 + 2a' },
+      { label: 'd)', eq: 'b(b² − ab)', ans: 'b³ − ab²' },
+    ]
+  },
+  m1701: {
+    id: '1701', title: 'Einfaldar jöfnur – plús og mínus',
+    instruction: 'Leystu eftirfarandi <strong><strong>jöfnu</strong>r</strong> annað hvort með því að gera eins báðum megin eða með því að færa yfir og <strong>einangra</strong> þannig x-ið.',
+    problems: [
+      { label: 'a)', eq: 'x + 29 = 112', ans: 'x = 83' },
+      { label: 'b)', eq: 'x + 2,7 = 11,93', ans: 'x = 9,23' },
+      { label: 'c)', eq: 'x − 14 = 38', ans: 'x = 52' },
+      { label: 'd)', eq: 'x − 7,63 = 28,4', ans: 'x = 36,03' },
+    ]
+  },
+  m1702: {
+    id: '1702', title: 'Margföldun – prófaðu svarið',
+    instruction: 'Leystu <strong><strong><strong>jöfnu</strong>r</strong>nar</strong> og prófaðu svarið sem þú færð.',
+    problems: [
+      { label: 'a)', eq: '2x = 28', ans: 'x = 14' },
+      { label: 'b)', eq: '3x = 261', ans: 'x = 87' },
+      { label: 'c)', eq: '4x = 12,8', ans: 'x = 3,2' },
+      { label: 'd)', eq: '0,2x = 14', ans: 'x = 70' },
+    ]
+  },
+  m1703: {
+    id: '1703', title: 'Tvö skref',
+    instruction: 'Leystu <strong><strong><strong>jöfnu</strong>r</strong>nar</strong>.',
+    problems: [
+      { label: 'a)', eq: '2x + 8 = 22', ans: 'x = 7' },
+      { label: 'b)', eq: '2x − 15,6 = 28,2', ans: 'x = 21,9' },
+      { label: 'c)', eq: '3 + 3x = 114', ans: 'x = 37' },
+      { label: 'd)', eq: '0,1x + 2,3 = 14,8', ans: 'x = 125' },
+    ]
+  },
+  m1704: {
+    id: '1704', title: 'Neikvæður stuðull – prófaðu lausnirnar',
+    instruction: 'Leystu <strong><strong><strong>jöfnu</strong>r</strong>nar</strong> og prófaðu <strong><strong><strong>lausn</strong>ir</strong>nar</strong>.',
+    problems: [
+      { label: 'a)', eq: '4 − 2x = 12', ans: 'x = −4' },
+      { label: 'b)', eq: '2,3 − 2x = 14,9', ans: 'x = −6,3' },
+      { label: 'c)', eq: '18 − 5x = 2353', ans: 'x = −467' },
+    ]
+  },
+  m1705: {
+    id: '1705', title: 'Líkir liðir – draga saman fyrst',
+    instruction: 'Byrjaðu á því að draga saman <strong>líka liði</strong> til að einfalda <strong><strong><strong>jöfnu</strong>r</strong>nar</strong>, leystu þær svo.',
+    problems: [
+      { label: 'a)', eq: '4x − 2x = 8', ans: 'x = 4' },
+      { label: 'b)', eq: '6x + 4x + 5 − 2 = 23', ans: 'x = 2' },
+      { label: 'c)', eq: 'x + x + 20 + x + 30 = 500', ans: 'x = 150', wide: true },
+    ]
+  },
+  m1706: {
+    id: '1706', title: 'Líkir liðir – neikvæðar tölur',
+    instruction: 'Byrjaðu á því að draga saman <strong>líka liði</strong> til að einfalda <strong><strong><strong>jöfnu</strong>r</strong>nar</strong>, leystu þær svo.',
+    problems: [
+      { label: 'a)', eq: '2x − 4x = 10', ans: 'x = −5' },
+      { label: 'b)', eq: '2x + 8 − 5x − 3 = 155', ans: 'x = −50' },
+      { label: 'c)', eq: '8x + 7 − 9x − 11 = 14,4', ans: 'x = −18,4' },
+    ]
+  },
+  m1707: {
+    id: '1707', title: 'Steinar eða Gunnar?',
+    instruction: 'Steinar heldur að x = 4, Gunnar heldur að x = 6. Athugaðu með <strong>prófun</strong> hvor hefur rétt fyrir sér.',
+    problems: [
+      { label: 'Jafnan', eq: '3x + 8 + 2x = 26 + 4x − 6 − x', ans: 'x = 6 → Gunnar hefur rétt ✓', wide: true },
+    ],
+    note: '<strong>Útskýring:</strong> Vinstri: 5x + 8 &nbsp;·&nbsp; Hægri: 3x + 20 &nbsp;→&nbsp; 2x = 12 &nbsp;→&nbsp; x = 6'
+  },
+
+  // ── 2-2 PRÓFA LAUSNIR ──
+  b572: {
+    id: '5.72', title: 'Leysa og prófa',
+    instruction: 'Leystu <strong>jöfnurnar</strong> með útreikningi. Prófaðu síðan <strong>lausnina</strong> með því að setja hana inn í upphaflegu <strong>jöfnuna</strong>.',
+    problems: [
+      { label: 'a)', eq: 'x + 8 = 23', ans: 'x = 15' },
+      { label: 'b)', eq: 'x − 10 = 42', ans: 'x = 52' },
+      { label: 'c)', eq: '2x = x + 5', ans: 'x = 5' },
+      { label: 'd)', eq: '3x + 5 = x + 9', ans: 'x = 2' },
+      { label: 'e)', eq: '2x = 150 − x', ans: 'x = 50' },
+      { label: 'f)', eq: '5x − 9 = 2x − 3', ans: 'x = 2' },
+      { label: 'g)', eq: '8x − 1 = 31', ans: 'x = 4' },
+      { label: 'h)', eq: '7x + 4 = 22 − 2x', ans: 'x = 2' },
+      { label: 'i)', eq: '<span class="frac"><sup>1</sup>⁄<sub>2</sub></span>x − 1 = 2 − x', ans: 'x = 2' },
+    ],
+  },
+
+  b581: {
+    id: '5.81', title: 'Fjórar tillögur — ein er rétt',
+    instruction: 'Við hverja <strong>jöfnu</strong> eru fjórar tillögur að <strong>lausnum</strong>. Prófaðu allar og finndu þá réttu.',
+    problems: [
+      { label: 'a) 6x + 11 = 35', eq: 'x = 1 &nbsp;&nbsp; x = 2 &nbsp;&nbsp; x = 3 &nbsp;&nbsp; x = 4', ans: 'x = 4 &nbsp; (6·4 + 11 = 35 ✓)', wide: true },
+      { label: 'b) 5x − 32 = 3x − 20', eq: 'x = 4 &nbsp;&nbsp; x = 6 &nbsp;&nbsp; x = 8 &nbsp;&nbsp; x = 10', ans: 'x = 6 &nbsp; (30−32 = 18−20 → −2 = −2 ✓)', wide: true },
+      { label: 'c) (13x + 12) : 3 = 5x + 2', eq: 'x = 0 &nbsp;&nbsp; x = 2 &nbsp;&nbsp; x = 3 &nbsp;&nbsp; x = 6', ans: 'x = 6 &nbsp; ((78+12)/3 = 32+2 → 30 = 30 ✓)', wide: true },
+    ],
+  },
+
+  // ── 2-3 ORÐADÆMI ──
+  b583: {
+    id: '5.83', title: 'Aldursdæmi',
+    instruction: 'Skráðu hvert dæmi sem <strong>jöfnu</strong> og leystu hana. Láttu x tákna <strong>óþekktu stærðina</strong>.',
+    problems: [
+      { label: 'a)', eq: 'Bróðir Ídu er 3 árum eldri en hún. Saman eru þau 17 ára. Hve gömul er Ída?', ans: 'x + (x+3) = 17 → 2x = 14 → x = 7. Ída er 7 ára, bróðirinn er 10 ára.', wide: true },
+      { label: 'b)', eq: 'Ásta er 2 árum eldri en Birna. Birna er 2 árum eldri en Sylvía. Samtals eru þær 99 ára. Hve gömul er Birna?', ans: '(x+2) + x + (x−2) = 99 → 3x = 99 → x = 33. Birna er 33 ára, Ásta 35 ára, Sylvía 31 árs.', wide: true },
+      { label: 'c)', eq: 'Erpur er 2 árum yngri en Páll. Aldur Péturs er tvöfaldur aldur Páls. Samtals eru þeir 38 ára. Hvað er Erpur gamall?', ans: 'Látum Pál vera x. Þá er Erpur x−2 og Pétur 2x. (x−2) + x + 2x = 38 → 4x = 40 → x = 10. Erpur er 8 ára.', wide: true },
+      { label: 'd)', eq: 'Kasper er 4 árum eldri en Jesper. Jónatan er helmingi yngri en Kasper verður eftir 4 ár. Samtals eru þeir 73 ára. Hversu gamall er Jónatan?', ans: 'Jesper = x, Kasper = x+4, Jónatan = (x+8)/2. x + (x+4) + (x+8)/2 = 73 → x = 22. Jónatan er 15 ára.', wide: true },
+    ],
+  },
+
+  b584: {
+    id: '5.84', title: 'Fjöldi og lengd',
+    instruction: 'Skrifaðu hvert verkefni sem <strong>jöfnu</strong> og leystu hana.',
+    problems: [
+      { label: 'a)', eq: 'Í frímerkjabók Jóns eru 16 blaðsíður með jafn mörgum frímerkjum á hverri. Alls á Jón 576 frímerki. Hve mörg frímerki eru á hverri blaðsíðu?', ans: '16x = 576 → x = 36. Það eru 36 frímerki á hverri blaðsíðu.', wide: true },
+      { label: 'b)', eq: 'Pálína skiptir striki í 11 hluta. Hver hluti er 8,2 cm á lengd. Hve langt er strikið í heild?', ans: '11x = 11 · 8,2 → Strikið er 90,2 cm á lengd.', wide: true },
+    ],
+  },
+
+  b585: {
+    id: '5.85', title: 'Tölur og sambönd',
+    instruction: 'Skráðu hvert dæmi sem <strong>jöfnu</strong> og leystu hana. Láttu x tákna <strong>óþekktu stærðina</strong>.',
+    problems: [
+      { label: 'a)', eq: 'Þegar þú leggur 7 við ákveðna tölu verður svarið 12. Hver er talan?', ans: 'x + 7 = 12 → x = 5' },
+      { label: 'b)', eq: 'Þegar þú bætir 3 við tölu og deilir summuna með 2 verður svarið 7. Hver er talan?', ans: '(x + 3) : 2 = 7 → x + 3 = 14 → x = 11' },
+      { label: 'c)', eq: 'Tala er 3 stærri en önnur tala. Summa þessara tveggja talna er 45. Hver er minni talan?', ans: 'x + (x+3) = 45 → 2x = 42 → x = 21. Minni talan er 21.' },
+      { label: 'd)', eq: 'Summa þriggja heilla talna sem koma hver á eftir annarri er 42. Hver er minnsta talan?', ans: 'x + (x+1) + (x+2) = 42 → 3x + 3 = 42 → x = 13. Minnsta talan er 13.' },
+      { label: 'e)', eq: 'Ef tala er margfölduð með 5 verður hún 34 stærri en þreföld upphaflega talan. Hver er talan?', ans: '5x = 3x + 34 → 2x = 34 → x = 17' },
+    ],
+  },
+
+  // ── 2-4 ÓJÖFNUR ──
+  oj01: {
+    id: 'Ó-1', title: 'Hvað tákna táknin?',
+    instruction: 'Lestu hverja <strong>ójöfnu</strong> og veldu rétt orð — <em>minna en</em>, <em>stærra en</em>, <em>minna en eða jafnt</em>, <em>stærra en eða jafnt</em>.',
+    problems: [
+      { label: 'a)', eq: 'x &lt; 8', ans: 'x er minna en 8' },
+      { label: 'b)', eq: 'y &gt; 3', ans: 'y er stærra en 3' },
+      { label: 'c)', eq: 'z ≤ 10', ans: 'z er minna en eða jafnt og 10' },
+      { label: 'd)', eq: 'a ≥ 5', ans: 'a er stærra en eða jafnt og 5' },
+      { label: 'e)', eq: '12 &gt; x', ans: 'x er minna en 12' },
+      { label: 'f)', eq: '0 ≤ n', ans: 'n er stærra en eða jafnt og 0' },
+    ],
+  },
+
+  oj02: {
+    id: 'Ó-2', title: 'Settu inn rétt tákn',
+    instruction: 'Settu &lt;, &gt;, ≤ eða ≥ á milli stærðanna til að gera fullyrðinguna rétta.',
+    problems: [
+      { label: 'a)', eq: '7 ___ 4', ans: '7 &gt; 4' },
+      { label: 'b)', eq: '3 ___ 9', ans: '3 &lt; 9' },
+      { label: 'c)', eq: '5 ___ 5', ans: '5 = 5 (eða ≤ eða ≥)' },
+      { label: 'd)', eq: '−2 ___ 1', ans: '−2 &lt; 1' },
+      { label: 'e)', eq: '−5 ___ −8', ans: '−5 &gt; −8' },
+      { label: 'f)', eq: '0 ___ −3', ans: '0 &gt; −3' },
+      { label: 'g)', eq: '½ ___ 0,4', ans: '½ &gt; 0,4' },
+      { label: 'h)', eq: '−1 ___ −1', ans: '−1 = −1 (eða ≤ eða ≥)' },
+    ],
+  },
+
+  oj03: {
+    id: 'Ó-3', title: 'Er talan lausn?',
+    instruction: 'Prófaðu hvort gefna talan uppfyllir <strong>ójöfnuna</strong>. Svaraðu já eða nei.',
+    problems: [
+      { label: 'a) x < 5,  x = 3', eq: 'Er 3 &lt; 5?', ans: 'Já ✓ (3 er minna en 5)' },
+      { label: 'b) x < 5,  x = 7', eq: 'Er 7 &lt; 5?', ans: 'Nei ✗ (7 er stærra en 5)' },
+      { label: 'c) x ≥ 4,  x = 4', eq: 'Er 4 ≥ 4?', ans: 'Já ✓ (4 er jafnt og 4)' },
+      { label: 'd) 2x > 10,  x = 6', eq: 'Er 2 · 6 &gt; 10?', ans: 'Já ✓ (12 &gt; 10)' },
+      { label: 'e) 2x > 10,  x = 5', eq: 'Er 2 · 5 &gt; 10?', ans: 'Nei ✗ (10 = 10, ekki stærra)' },
+      { label: 'f) x + 3 ≤ 8,  x = 5', eq: 'Er 5 + 3 ≤ 8?', ans: 'Já ✓ (8 ≤ 8)' },
+      { label: 'g) x + 3 ≤ 8,  x = 6', eq: 'Er 6 + 3 ≤ 8?', ans: 'Nei ✗ (9 &gt; 8)' },
+    ],
+  },
+
+  oj04: {
+    id: 'Ó-4', title: 'Ójöfnur úr raunveruleikanum',
+    instruction: 'Settu upp <strong>ójöfnu</strong> og leystu hana. Láttu x tákna <strong>óþekktu stærðina</strong>.',
+    problems: [
+      { label: 'a)', eq: 'Þú mátt eyða í hámark 3000 kr. Ísinn kostar 450 kr. Hve margar bækur (b kr. stykki) geturðu keypt?', ans: '450 + bx ≤ 3000 → bx ≤ 2550', wide: true },
+      { label: 'b)', eq: 'Þyngd í lyftunni má ekki fara yfir 500 kg. Þrír menn eru þegar inni, sá þyngsti 95 kg, og tveir aðrir eru 80 kg hvor. Hve þungt mega hlutirnir sem þeir bera vera?', ans: '95 + 80 + 80 + h ≤ 500 → h ≤ 245 kg', wide: true },
+      { label: 'c)', eq: 'Stigi þarf að vera a.m.k. 150 cm á hæð til að fara í tívolí. Jón er 137 cm. Hve mikið þarf hann að vaxa?', ans: '137 + v ≥ 150 → v ≥ 13 cm', wide: true },
+      { label: 'd)', eq: 'Bíómiðar kosta 1200 kr. stykki. Þú átt 8500 kr. Hve marga miða (m) geturðu keypt?', ans: '1200m ≤ 8500 → m ≤ 7,08 → m ≤ 7 miðar', wide: true },
+    ],
+  },
+};
+
+function openModal(id) {
+  const v = verkefni[id];
+  document.getElementById('modal-id').textContent = v.id;
+  document.getElementById('modal-title').textContent = v.title;
+  let html = `<p class="modal-instruction">${v.instruction}</p><div class="problems-grid">`;
+  v.problems.forEach(p => {
+    const cls = p.wide ? 'problem-wide' : 'problem';
+    html += `<div class="${cls}" onclick="toggleAnswer(this)">
+      <div class="problem-label">${p.label}</div>
+      <div class="problem-eq">${p.eq}</div>
+      <div class="problem-answer"><div class="answer-label">Svar</div><div class="answer-val">${p.ans}</div></div>
+      <button class="show-btn">Sýna svar ▾</button>
+    </div>`;
+  });
+  html += '</div>';
+  if (v.note) html += `<div class="note-box">${v.note}</div>`;
+  document.getElementById('modal-body').innerHTML = html;
+  document.getElementById('overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  document.getElementById('overlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function closeOnOverlay(e) {
+  if (e.target === document.getElementById('overlay')) closeModal();
+}
+function toggleAnswer(el) {
+  const answer = el.querySelector('.problem-answer');
+  const btn = el.querySelector('.show-btn');
+  if (!answer) return;
+  const vis = answer.classList.toggle('visible');
+  if (btn) btn.textContent = vis ? 'Fela svar ▴' : 'Sýna svar ▾';
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+function scrollToSection(id) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  const offset = 80;
+  const top = el.getBoundingClientRect().top + window.scrollY - offset;
+  window.scrollTo({ top, behavior: 'smooth' });
+}
+
+function toggleExplainer(btn) {
+  const body = btn.nextElementSibling;
+  const isOpen = btn.classList.toggle('open');
+  body.classList.toggle('open', isOpen);
+}
+
+const hugtok = {
+  'liður': {
+    def: 'Tölur eða bókstafir sem eru tengdir saman með <strong>+</strong> eða <strong>−</strong> táknum. Í stæðunni 2a + 3b + 5 eru <strong>þrír liðir</strong>.',
+    ex: '2a + 3b + 5  →  þrír liðir'
+  },
+  'fastaliður': {
+    def: 'Liður í stæðu sem inniheldur <strong>einungis tölu</strong> — engan bókstaf. Fastaliðurinn breytist aldrei þótt breytan breytist.',
+    ex: '8p − 5 + 4p + 7  →  −5 og +7 eru fastaliðar'
+  },
+  'breytuliður': {
+    def: 'Liður í stæðu sem inniheldur <strong>breytu</strong> (bókstaf). Gildið getur breyst eftir því hvað breytan er.',
+    ex: '3a + 2b  →  3a og 2b eru breytuliðar'
+  },
+  'algebrustæða': {
+    def: 'Stærðartákn þar sem öllum tölunum eða einhverjum þeirra er skipt út fyrir bókstafi. Bókstafirnir tákna <strong>óþekktar tölur</strong>.',
+    ex: '4n + 3  eða  2x − 7y + 1'
+  },
+  'breyta': {
+    def: 'Tákn (venjulega bókstafur) sem merkir gildi tölu sem <strong>getur breyst</strong>. Við gefum breytu gildi þegar við reiknum.',
+    ex: 'Ef x = 3, þá er 2x = 6'
+  },
+  'gildi stæðu': {
+    def: 'Niðurstaðan sem fæst þegar tala er sett inn í stað bókstafsins og stæðan reiknuð.',
+    ex: '2x + 1 þegar x = 4  →  2·4 + 1 = 9'
+  },
+  'margfeldi': {
+    def: 'Svarið sem kemur út þegar tala er margfölduð með annarri tölu. Þáttur · þáttur = margfeldi.',
+    ex: '3 · 6b = 18b'
+  },
+  'dreifiregla': {
+    def: 'Regla sem segir að tala utan sviga margfaldast við <strong>alla liðina</strong> inni í sviganum.',
+    ex: 'a(b + c) = ab + ac'
+  },
+  'bókstafareikningur': {
+    def: 'Reikningur með bókstöfum sem tákn fyrir tölur og breytur. Sömu reiknireglur gilda og í venjulegum talnareikningi.',
+    ex: '3a + 2a = 5a  (eins og 3 + 2 = 5)'
+  },
+  'jafna': {
+    def: 'Samsetning tveggja algebrustæðna sem standa hvor sínum megin við <strong>jöfnumerki (=)</strong>. Jöfnumerkið þýðir að stæðurnar hafa sama gildi.',
+    ex: '2x + 1 = x + 4'
+  },
+  'óþekkt stærð': {
+    def: 'Tala sem við vitum ekki í jöfnu — við táknum hana með bókstaf (venjulega <strong>x</strong>) og reynum að finna gildi hennar.',
+    ex: '3x + 5 = 20  →  x er óþekkta stærðin'
+  },
+  'jöfnumerki': {
+    def: 'Táknið <strong>=</strong> sem sýnir að það sem er vinstra megin er jafnt því sem er hægra megin. Báðar hliðar verða að vera jafnar.',
+    ex: '2 + 3 = 5  eða  2x = 14'
+  },
+  'andhverfar aðgerðir': {
+    def: 'Aðgerðir sem ganga til baka. Samlagnin og frádrátturinn eru andhverfar — eins og margföldun og deiling.',
+    ex: 'x + 5 = 12  →  x = 12 − 5 = 7'
+  },
+  'lausn': {
+    def: 'Gildið á óþekktu stærðinni sem gerir jöfnuna rétta. Við getum prófað lausn með því að setja hana inn í jöfnuna.',
+    ex: 'x = 5 er lausn á 2x + 3 = 13'
+  },
+  'ójafna': {
+    def: 'Líkt og jafna en í stað = er notað <strong>&lt;</strong>, <strong>&gt;</strong>, <strong>≤</strong> eða <strong>≥</strong> til að lýsa að ein stærð sé stærri eða minni en önnur.',
+    ex: 'x < 5  eða  3x ≥ 12'
+  },
+};
+
+function showGloss(groupId, word) {
+  const popup = document.getElementById(groupId + '-popup');
+  const wordEl = document.getElementById(groupId + '-word');
+  const defEl = document.getElementById(groupId + '-def');
+  const exEl = document.getElementById(groupId + '-ex');
+  const chips = document.querySelectorAll('#' + groupId + ' .gchip');
+
+  // Toggle off if same chip clicked again
+  if (popup.classList.contains('visible') && wordEl.textContent === word) {
+    popup.classList.remove('visible');
+    chips.forEach(c => c.classList.remove('active'));
+    return;
+  }
+
+  const data = hugtok[word];
+  if (!data) return;
+  wordEl.textContent = word;
+  defEl.innerHTML = data.def;
+  exEl.textContent = data.ex;
+  popup.classList.add('visible');
+  chips.forEach(c => c.classList.toggle('active', c.textContent.trim() === word));
+}
+</script>
+
+</body>
+</html>
